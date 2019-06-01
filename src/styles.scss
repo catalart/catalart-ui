@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import './catalart.theme.scss';
+
+.error-snackbar {
+  color: #f44336 !important;
+}
+
+.success-snackbar {
+  color: #00c853 !important;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+span:focus {
+  outline: none !important;
+}

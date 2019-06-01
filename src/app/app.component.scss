@@ -1,0 +1,34 @@
+.drawer-container {
+  height: calc(100% - 64px);
+
+  ::ng-deep .list-header {
+    margin-bottom: 10px !important;
+  }
+
+  ::ng-deep .list-item {
+    margin-left: 20px !important;
+    cursor: pointer;
+  }
+}
+
+.remaining-space {
+  flex: 1 1 auto;
+}
+
+.drawer {
+  background-color: #282734;
+  min-width: 200px;
+
+  ::ng-deep mat-list-item {
+    color: whitesmoke;
+  }
+}
+
+.mat-list-base {
+  padding-top: 0px;
+}
+
+.active-link {
+  text-decoration: underline;
+  text-decoration-color: white;
+}

@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$catalart-app-primary: mat-palette($mat-indigo);
+$catalart-app-accent: mat-palette($mat-pink, 500, 900, A100);
+$catalart-app-warn: mat-palette($mat-deep-orange);
+
+$catalart-app-theme: mat-light-theme($catalart-app-primary, $catalart-app-accent, $catalart-app-warn);
+
+@include angular-material-theme($catalart-app-theme);
