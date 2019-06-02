@@ -1,0 +1,6 @@
+<!--Part infinite list, with search, filter, with cards including Name of piece, picture, year, artist-->
+<ng-container *ngFor="let artworkPreview of artCatalog">
+  <artwork-preview-card [artworkPreview]="artworkPreview"
+                        (onViewClicked)="onViewClicked(artworkPreview)"
+                        (onEditClicked)="onEditClicked(artworkPreview)"></artwork-preview-card>
+</ng-container>

@@ -9,10 +9,19 @@ import { MaterialModule } from './material.module';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import { CatalogModule } from './catalog/catalog.module';
+import { CommonModule } from './common/common.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule, AdminDashboardModule, CatalogModule],
+  imports: [
+    BrowserModule,
+    RoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    AdminDashboardModule,
+    CatalogModule,
+    CommonModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

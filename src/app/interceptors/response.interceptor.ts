@@ -3,7 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SnackbarMessagingService } from '../services/snackbar-messaging.service';
+import { SnackbarMessagingService } from '../common/services/snackbar-messaging.service';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {

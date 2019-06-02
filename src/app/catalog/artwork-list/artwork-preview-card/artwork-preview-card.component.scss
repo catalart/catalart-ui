@@ -1,0 +1,31 @@
+.card {
+  width: 250px;
+  height: 300px;
+  margin: 15px 0px 0px 15px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+img {
+  object-fit: cover;
+  height: 150px;
+  margin-top: 10px;
+}
+
+#preview-title {
+  font-size: 16px;
+}
+
+.content {
+  flex: 1 1 auto;
+}
+
+mat-card-header {
+  margin-bottom: 10px;
+}
+
+mat-icon {
+  font-size: 175px;
+  margin-left: 35px;
+}

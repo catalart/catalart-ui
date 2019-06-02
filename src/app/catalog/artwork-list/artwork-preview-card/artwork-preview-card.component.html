@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title id="preview-title">{{artworkPreview.title}}</mat-card-title>
+    <mat-card-subtitle>{{artworkPreview.creatorIdentity}} ({{artworkPreview.creationDate}})</mat-card-subtitle>
+  </mat-card-header>
+  <div class="content">
+    <ng-container *ngIf="artworkPreview.preview else defaultImage">
+      <img mat-card-image [src]="artworkPreview.preview" alt="Photo of a Shiba Inu">
+    </ng-container>
+    <ng-template #defaultImage><mat-icon mat-light>insert_photo</mat-icon></ng-template>
+  </div>
+  <mat-card-actions align="end">
+    <button mat-button (click)="onViewClicked.emit()">View</button>
+    <button mat-button (click)="onEditClicked.emit()">Edit</button>
+  </mat-card-actions>
+</mat-card>
