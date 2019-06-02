@@ -1,0 +1,12 @@
+<ng-container [formGroup]="artworkSubjectMatterForm">
+  <catalart-section [title]="'Subject Matter'"
+                    [description]="'What is depicted in and by a work of art.'"
+                    [invalid]="artworkSubjectMatterForm.invalid">
+    <mat-form-field>
+      <input matInput
+             placeholder="General Subject Terms"
+             formControlName="generalSubjectTerms"
+             required>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

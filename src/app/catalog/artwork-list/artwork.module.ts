@@ -11,10 +11,18 @@ import { ArtworkPreviewCardComponent } from './artwork-preview-card/artwork-prev
 import { ArtworkEditComponent } from './artwork-edit/artwork-edit.component';
 
 import { ArtworkFormService } from './artwork-edit/artwork-form.service';
+import { ArtworkSectionsModule } from './sections/artwork-sections.module';
 
 @NgModule({
   declarations: [ArtworkListComponent, ArtworkPreviewCardComponent, ArtworkEditComponent],
-  imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    RoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    ArtworkSectionsModule
+  ],
   providers: [ArtworkFormService]
 })
 export class ArtworkModule {}

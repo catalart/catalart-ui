@@ -1,0 +1,16 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf="invalid" color="warn">error_outline</mat-icon>
+        {{title}}
+      </mat-panel-title>
+      <mat-panel-description class="section-description">
+        {{description}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <span class="content">
+      <ng-content></ng-content>
+    </span>
+  </mat-expansion-panel>
+</mat-accordion>

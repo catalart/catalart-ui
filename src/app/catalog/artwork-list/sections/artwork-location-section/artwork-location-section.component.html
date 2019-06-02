@@ -1,0 +1,12 @@
+<ng-container [formGroup]="artworkLocationForm">
+  <catalart-section [title]="'Current Location'"
+                    [description]="'The name and geographic location of the repository that is currently responsible for the work.'"
+                    [invalid]="artworkLocationForm.invalid">
+    <mat-form-field>
+      <input matInput
+             placeholder="Current Location"
+             formControlName="currentLocation"
+             required>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

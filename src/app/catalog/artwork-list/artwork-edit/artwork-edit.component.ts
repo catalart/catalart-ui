@@ -35,7 +35,7 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
     this.artwork = {
       catalogLevel: {
         id: 1,
-        text: 'item',
+        text: 'Item',
         label: 'ITEM'
       },
       objectType: 'painting',
@@ -57,5 +57,45 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
       citation: 'some citation'
     };
     this.artworkForm = this.artworkFormService.buildForm(this.artwork);
+  }
+
+  get artworkObjectForm() {
+    return this.artworkForm.get('objectSection');
+  }
+
+  get classificationForm() {
+    return this.artworkForm.get('classificationSection');
+  }
+
+  get titleForm() {
+    return this.artworkForm.get('titleSection');
+  }
+
+  get creationForm() {
+    return this.artworkForm.get('creationSection');
+  }
+
+  get measurementsForm() {
+    return this.artworkForm.get('measurementsSection');
+  }
+
+  get materialsAndTechniquesForm() {
+    return this.artworkForm.get('materialsAndTechniquesSection');
+  }
+
+  get subjectMatterForm() {
+    return this.artworkForm.get('subjectMatterSection');
+  }
+
+  get locationForm() {
+    return this.artworkForm.get('locationSection');
+  }
+
+  get visualDocumentationForm() {
+    return this.artworkForm.get('visualDocumentationSection');
+  }
+
+  get citationForm() {
+    return this.artworkForm.get('citationSection');
   }
 }

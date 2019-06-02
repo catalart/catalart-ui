@@ -1,0 +1,25 @@
+
+<ng-container [formGroup]="artworkCreationForm">
+    <catalart-section [title]="'Creation'"
+                      [description]="'The creation, design, execution, or production of a work of art or architecture and its components.'"
+                      [invalid]="artworkCreationForm.invalid">
+      <mat-form-field>
+        <input matInput
+               placeholder="Creator Identity"
+               formControlName="creatorIdentity"
+               required>
+        <input matInput
+               placeholder="Creator Role"
+               formControlName="creationRole"
+               required>
+        <input matInput
+               placeholder="Earliest Creation Date"
+               formControlName="creationEarliestDate"
+               required>
+        <input matInput
+               placeholder="Latest Creation Date"
+               formControlName="creationLatestDate"
+               required>
+      </mat-form-field>
+    </catalart-section>
+  </ng-container>

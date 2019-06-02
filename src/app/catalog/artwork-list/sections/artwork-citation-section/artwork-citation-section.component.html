@@ -1,0 +1,12 @@
+<ng-container [formGroup]="artworkCitationForm">
+  <catalart-section [title]="'Related Textual References'"
+                    [description]="'Citations to sources of textual information related to the work of art.'"
+                    [invalid]="artworkCitationForm.invalid">
+    <mat-form-field>
+      <input matInput
+             placeholder="Citation"
+             formControlName="citation"
+             required>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

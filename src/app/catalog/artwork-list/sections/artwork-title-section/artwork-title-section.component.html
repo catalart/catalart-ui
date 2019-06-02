@@ -1,0 +1,12 @@
+<ng-container [formGroup]="artworkTitleForm">
+  <catalart-section [title]="'Titles or Names'"
+                    [description]="'The titles or names given to a work of art.'"
+                    [invalid]="artworkTitleForm.invalid">
+    <mat-form-field>
+      <input matInput
+             placeholder="Title"
+             formControlName="title"
+             required>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

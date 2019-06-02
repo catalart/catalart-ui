@@ -1,0 +1,14 @@
+
+
+<ng-container [formGroup]="artworkMeasurementsForm">
+    <catalart-section [title]="'Measurements'"
+                      [description]="'Information about the size, shape, scale, and dimensions of a work of art.'"
+                      [invalid]="artworkMeasurementsForm.invalid">
+      <mat-form-field>
+        <input matInput
+               placeholder="Dimensions"
+               formControlName="dimensions"
+               required>
+      </mat-form-field>
+    </catalart-section>
+  </ng-container>

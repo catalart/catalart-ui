@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-expansion-panel {
+  margin: 10px 10px 0px 10px !important;
+}
+
+mat-icon {
+  font-size: 18px;
+  height: 18px;
+}
+
+.section-description {
+  justify-content: flex-end;
+}
