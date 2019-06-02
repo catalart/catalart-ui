@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span routerLink="/">Catalart</span>
+  <span class="title" routerLink="/">Catalart</span>
   <span class="remaining-space"></span>
   <span>
     <button mat-button [matMenuTriggerFor]="beforeMenu">Sam Pastoriza</button>
@@ -16,12 +16,18 @@
         <span class="list-item"
               routerLink="/admin-dashboard"
               routerLinkActive="active-link"
-              matLine>Admin Dashboard</span>
+              matLine>Admin Dashboard <mat-icon mat-light md-18>chevron_right</mat-icon></span>
       </mat-list-item>
       <mat-list-item>
         <h3 class="list-header" matLine>Catalog</h3>
-        <span class="list-item" matLine>Art Collections</span>
-        <span class="list-item" matLine>Artwork</span>
+        <span class="list-item"
+              matLine
+              routerLink="/art-collections"
+              routerLinkActive="active-link">Art Collections <mat-icon mat-light md-18>chevron_right</mat-icon></span>
+        <span class="list-item"
+              matLine
+              routerLink="/artwork"
+              routerLinkActive="active-link">Artwork <mat-icon mat-light md-18>chevron_right</mat-icon></span>
       </mat-list-item>
     </mat-list>
   </mat-drawer>

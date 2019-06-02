@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
+import { CatalogModule } from './catalog/catalog.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule, AdminDashboardModule],
+  imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule, AdminDashboardModule, CatalogModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

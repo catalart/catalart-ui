@@ -5,11 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from '../routing.module';
 import { MaterialModule } from '../material.module';
 
-import { AdminDashboardComponent } from './admin-dashboard.component';
-import { AdminCardComponent } from './admin-card/admin-card.component';
+import { ArtworkListComponent } from './artwork-list/artwork-list.component';
+import { ArtCollectionListComponent } from './art-collection-list/art-collection-list.component';
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminCardComponent],
+  declarations: [ArtworkListComponent, ArtCollectionListComponent],
   imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule]
 })
-export class AdminDashboardModule {}
+export class CatalogModule {}
