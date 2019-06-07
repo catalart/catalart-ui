@@ -2,17 +2,10 @@
   <catalart-section [title]="'Object/Work'"
                     [description]="'An identification of the type and number of works described.'"
                     [invalid]="artworkObjectForm.invalid">
-    <mat-form-field>
-      <mat-select placeholder="Catalog Level"
-                  formControlName="catalogLevel"
-                  disableOptionCentering
-                  required>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let option of catalogOptions" [value]="option.text">
-          {{option.text}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <catalart-dropdown formControlName="catalogLevel"
+                       placeholderText="Catalog Level"
+                       [options]="catalogOptions">
+    </catalart-dropdown>
     <mat-form-field>
       <input matInput
              placeholder="Object Type"
