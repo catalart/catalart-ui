@@ -1,0 +1,15 @@
+<ng-container [formGroup]="tagForm">
+  <mat-form-field>
+    <input matInput
+          type="text"
+          placeholder="Tags"
+          formControlName="tags"
+          (keydown.enter)="onEnter()"/>
+  </mat-form-field>
+  <mat-chip-list>
+    <mat-chip *ngFor="let tag of tags" [value]="tag" (removed)="removeTag(tag)" color="primary">
+      {{ tag }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</ng-container>

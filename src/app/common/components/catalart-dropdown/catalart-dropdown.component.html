@@ -1,0 +1,9 @@
+<mat-select placeholder="Catalog Level"
+            formControlName="catalogLevel"
+            disableOptionCentering
+            required>
+  <mat-option>--</mat-option>
+  <mat-option *ngFor="let option of catalogOptions" [value]="option.id">
+    {{option.text}}
+  </mat-option>
+</mat-select>
