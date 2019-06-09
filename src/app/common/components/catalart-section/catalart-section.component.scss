@@ -7,9 +7,15 @@ mat-expansion-panel {
   margin: 0px 10px 10px 10px !important;
 }
 
-mat-icon {
+mat-icon.validation-error {
   font-size: 18px;
   height: 18px;
+  position: absolute;
+  left: 14px;
+}
+
+.title {
+  margin-left: 5px;
 }
 
 .section-description {

@@ -2,14 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Artwork } from './artwork.model';
+import { Artwork } from '../artwork.model';
 import { FormGroup } from '@angular/forms';
-import { ArtworkFormService } from './artwork-form.service';
+import { ArtworkFormService } from '../artwork-form.service';
+import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 
 @Component({
   selector: 'artwork-edit',
-  templateUrl: './artwork-edit.component.html',
-  styleUrls: ['./artwork-edit.component.scss']
+  templateUrl: './artwork-edit.component.html'
 })
 export class ArtworkEditComponent implements OnInit, OnDestroy {
   artwork: Artwork;
@@ -17,7 +17,12 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route: ActivatedRoute, private artworkFormService: ArtworkFormService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private artworkFormService: ArtworkFormService,
+    private sms: SnackbarMessagingService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.route.params.pipe(takeUntil(this.destroyed)).subscribe(params => {
@@ -59,47 +64,8 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
     this.artworkForm = this.artworkFormService.buildForm(this.artwork);
   }
 
-  onCancel() {
+  onSave() {
+    this.sms.displayMessage('Save is not implemented yet');
     this.router.navigateByUrl('artwork/list');
-  }
-
-  get artworkObjectForm() {
-    return this.artworkForm.get('objectSection');
-  }
-
-  get classificationForm() {
-    return this.artworkForm.get('classificationSection');
-  }
-
-  get titleForm() {
-    return this.artworkForm.get('titleSection');
-  }
-
-  get creationForm() {
-    return this.artworkForm.get('creationSection');
-  }
-
-  get measurementsForm() {
-    return this.artworkForm.get('measurementsSection');
-  }
-
-  get materialsAndTechniquesForm() {
-    return this.artworkForm.get('materialsAndTechniquesSection');
-  }
-
-  get subjectMatterForm() {
-    return this.artworkForm.get('subjectMatterSection');
-  }
-
-  get locationForm() {
-    return this.artworkForm.get('locationSection');
-  }
-
-  get visualDocumentationForm() {
-    return this.artworkForm.get('visualDocumentationSection');
-  }
-
-  get citationForm() {
-    return this.artworkForm.get('citationSection');
   }
 }

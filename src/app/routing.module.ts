@@ -6,6 +6,7 @@ import { ArtCollectionListComponent } from './catalog/art-collection-list/art-co
 import { ArtworkListComponent } from './catalog/artwork-section/artwork-list/artwork-list.component';
 import { ArtworkEditComponent } from './catalog/artwork-section/artwork-edit/artwork-edit.component';
 import { ArtworkSectionComponent } from './catalog/artwork-section/artwork-section.component';
+import { ArtworkAddComponent } from './catalog/artwork-section/artwork-add/artwork-add.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'edit/:id',
         component: ArtworkEditComponent
+      },
+      {
+        path: 'add',
+        component: ArtworkAddComponent
       }
     ]
   }

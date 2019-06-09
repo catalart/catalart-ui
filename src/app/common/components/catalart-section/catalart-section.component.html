@@ -2,8 +2,11 @@
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <mat-icon *ngIf="invalid" color="warn">error_outline</mat-icon>
-        {{title}}
+        <mat-icon *ngIf="invalid"
+                  color="warn"
+                  title="Validation errors exist"
+                  class="validation-error">error_outline</mat-icon>
+        <span class="title">{{title}}</span>
       </mat-panel-title>
       <mat-panel-description class="section-description">
         {{description}}

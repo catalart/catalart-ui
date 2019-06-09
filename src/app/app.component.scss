@@ -10,8 +10,14 @@
     margin-bottom: 5px !important;
     cursor: pointer;
 
+    .list-text:hover {
+      text-decoration: underline;
+      text-decoration-color: white;
+    }
+
     mat-icon {
       float: right;
+      line-height: 18px;
     }
   }
 }
@@ -31,11 +37,6 @@
 
 .mat-list-base {
   padding-top: 0px;
-}
-
-.active-link {
-  text-decoration: underline;
-  text-decoration-color: white;
 }
 
 .title {
