@@ -7,10 +7,10 @@
     <ng-container *ngIf="artworkPreview.preview else defaultImage">
       <img mat-card-image [src]="artworkPreview.preview" alt="Photo of a Shiba Inu">
     </ng-container>
-    <ng-template #defaultImage><mat-icon mat-light>insert_photo</mat-icon></ng-template>
+    <ng-template #defaultImage><mat-icon mat-light class="default-icon">insert_photo</mat-icon></ng-template>
   </div>
   <mat-card-actions align="end">
-    <button mat-button (click)="onViewClicked.emit()">View</button>
-    <button mat-button (click)="onEditClicked.emit()">Edit</button>
+    <button mat-button (click)="onViewClicked.emit()">View <mat-icon class="button-icon">pageview</mat-icon></button>
+    <button mat-button (click)="onEditClicked.emit()">Edit <mat-icon class="button-icon">edit</mat-icon></button>
   </mat-card-actions>
 </mat-card>

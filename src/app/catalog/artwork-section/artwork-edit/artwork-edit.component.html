@@ -1,7 +1,7 @@
 <span class="artwork-sections" [formGroup]="artworkForm">
   <span class="button-group">
-    <button mat-button>Cancel</button>
-    <button mat-button class="save">Save</button>
+    <button mat-button (click)="onCancel()">Cancel <mat-icon class="button-icon">cancel</mat-icon></button>
+    <button mat-button class="save">Save <mat-icon class="button-icon">save</mat-icon></button>
   </span>
   <catalart-section-container>
     <artwork-object-section [artworkObjectForm]="artworkObjectForm"></artwork-object-section>

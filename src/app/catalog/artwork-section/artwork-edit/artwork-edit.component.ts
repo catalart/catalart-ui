@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Artwork } from './artwork.model';
@@ -17,7 +17,7 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route: ActivatedRoute, private artworkFormService: ArtworkFormService) {}
+  constructor(private route: ActivatedRoute, private artworkFormService: ArtworkFormService, private router: Router) {}
 
   ngOnInit() {
     this.route.params.pipe(takeUntil(this.destroyed)).subscribe(params => {
@@ -57,6 +57,10 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
       citation: 'some citation'
     };
     this.artworkForm = this.artworkFormService.buildForm(this.artwork);
+  }
+
+  onCancel() {
+    this.router.navigateByUrl('artwork/list');
   }
 
   get artworkObjectForm() {
