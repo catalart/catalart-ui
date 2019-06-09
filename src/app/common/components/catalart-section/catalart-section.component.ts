@@ -9,4 +9,5 @@ export class CatalartSectionComponent {
   @Input() title: string;
   @Input() description: string;
   @Input() invalid: boolean;
+  @Input() icon: string;
 }

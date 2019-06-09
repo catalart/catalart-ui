@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RoutingModule } from '../routing.module';
 import { MaterialModule } from '../material.module';
-import { ArtworkModule } from './artwork-list/artwork.module';
+import { ArtworkModule } from './artwork-section/artwork.module';
 
 import { ArtCollectionListComponent } from './art-collection-list/art-collection-list.component';
 

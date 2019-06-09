@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon *ngIf="invalid" color="warn">error_outline</mat-icon>
@@ -7,6 +7,7 @@
       </mat-panel-title>
       <mat-panel-description class="section-description">
         {{description}}
+        <mat-icon>{{icon}}</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <span class="content">

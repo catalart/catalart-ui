@@ -1,0 +1,16 @@
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 10px 0px 10px 0px;
+
+  .save {
+    color: #00c853;
+  }
+}
+
+.artwork-sections {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}

@@ -1,7 +1,8 @@
 <ng-container [formGroup]="artworkObjectForm">
   <catalart-section [title]="'Object/Work'"
                     [description]="'An identification of the type and number of works described.'"
-                    [invalid]="artworkObjectForm.invalid">
+                    [invalid]="artworkObjectForm.invalid"
+                    [icon]="'filter_list'">
     <catalart-dropdown formControlName="catalogLevel"
                        placeholderText="Catalog Level"
                        [options]="catalogOptions">

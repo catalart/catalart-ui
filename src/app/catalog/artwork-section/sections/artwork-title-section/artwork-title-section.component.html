@@ -1,7 +1,8 @@
 <ng-container [formGroup]="artworkTitleForm">
   <catalart-section [title]="'Titles or Names'"
                     [description]="'The titles or names given to a work of art.'"
-                    [invalid]="artworkTitleForm.invalid">
+                    [invalid]="artworkTitleForm.invalid"
+                    [icon]="'title'">
     <mat-form-field>
       <input matInput
              placeholder="Title"

@@ -2,7 +2,8 @@
 <ng-container [formGroup]="artworkCreationForm">
     <catalart-section [title]="'Creation'"
                       [description]="'The creation, design, execution, or production of a work of art or architecture and its components.'"
-                      [invalid]="artworkCreationForm.invalid">
+                      [invalid]="artworkCreationForm.invalid"
+                      [icon]="'date_range'">
       <mat-form-field>
         <input matInput
                placeholder="Creator Identity"

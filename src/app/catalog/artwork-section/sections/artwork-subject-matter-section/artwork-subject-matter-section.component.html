@@ -1,7 +1,8 @@
 <ng-container [formGroup]="artworkSubjectMatterForm">
   <catalart-section [title]="'Subject Matter'"
                     [description]="'What is depicted in and by a work of art.'"
-                    [invalid]="artworkSubjectMatterForm.invalid">
+                    [invalid]="artworkSubjectMatterForm.invalid"
+                    [icon]="'tonality'">
     <catalart-tags formControlName="generalSubjectTerms"></catalart-tags>
   </catalart-section>
 </ng-container>

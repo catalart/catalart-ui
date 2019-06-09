@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ArtworkPreview } from './artwork-preview-card/artwork-preview.model';
+import { ArtworkPreview } from '../artwork-preview-card/artwork-preview.model';
 import { Router } from '@angular/router';
 
 @Component({

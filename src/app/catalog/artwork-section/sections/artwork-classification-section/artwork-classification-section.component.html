@@ -1,7 +1,8 @@
 <ng-container [formGroup]="artworkClassificationForm">
   <catalart-section [title]="'Classification'"
                     [description]="'Placement of a work of art or architecture within a classification scheme.'"
-                    [invalid]="artworkClassificationForm.invalid">
+                    [invalid]="artworkClassificationForm.invalid"
+                    [icon]="'category'">
     <mat-form-field>
       <input matInput
              placeholder="Classification Term"
