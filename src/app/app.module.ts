@@ -9,7 +9,7 @@ import { MaterialModule } from './material.module';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import { CatalogModule } from './catalog/catalog.module';
-import { CommonModule } from './common/common.module';
+import { CatalartCommonModule } from './common/catalart-common.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +20,7 @@ import { CommonModule } from './common/common.module';
     MaterialModule,
     AdminDashboardModule,
     CatalogModule,
-    CommonModule
+    CatalartCommonModule
   ],
   providers: [
     {

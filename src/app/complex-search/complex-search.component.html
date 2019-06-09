@@ -1,0 +1,13 @@
+<h1>Catalart</h1>
+<h3>A collection of art unlike any other.</h3>
+<span class="search-box">
+  <mat-form-field class="search"
+                  [formGroup]="searchForm">
+    <input matInput
+           placeholder="Search"
+           formControlName="searchTerm"
+           (keydown.enter)="search()">
+    <mat-icon matSuffix (click)="search()">search</mat-icon>
+  </mat-form-field>
+</span>
+

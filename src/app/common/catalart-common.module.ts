@@ -24,4 +24,4 @@ import { CatalartSectionContainerComponent } from './components/section-containe
     CatalartSectionContainerComponent
   ]
 })
-export class CommonModule {}
+export class CatalartCommonModule {}

@@ -1,0 +1,10 @@
+<span class="art-collection-sections" [formGroup]="artCollectionForm">
+  <span class="button-group">
+    <button mat-button (click)="cancelClicked()">Cancel <mat-icon class="button-icon">cancel</mat-icon></button>
+    <button mat-button class="save" (click)="saveClicked()">Save <mat-icon class="button-icon">save</mat-icon></button>
+  </span>
+  <catalart-section-container>
+    <art-collection-information-section [artCollectionInformationForm]="artCollectionInformationForm"></art-collection-information-section>
+    <art-collection-collection-section [artCollectionCollectionForm]="artCollectionCollectionForm"></art-collection-collection-section>
+  </catalart-section-container>
+</span>

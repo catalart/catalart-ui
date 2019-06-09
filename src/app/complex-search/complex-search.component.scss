@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: row;
+  min-width: 50%;
+  align-items: center;
+  margin-top: 40px;
+
+  .search {
+    flex: 1;
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+}

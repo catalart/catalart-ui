@@ -11,8 +11,7 @@ export class CreationDate {
 }
 
 export class Artwork {
-  catalogLevel: Enumeration = new Enumeration();
-  objectType: string;
+  id: number;
   classificationTerm: string;
   title: string;
   creator: Creator = new Creator();

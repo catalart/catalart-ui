@@ -1,0 +1,23 @@
+<ng-container [formGroup]="artCollectionInformationForm">
+    <catalart-section [title]="'Basic Information'"
+                      [description]="'Basic information on the art collection'"
+                      [invalid]="artCollectionInformationForm.invalid"
+                      [icon]="'list'">
+      <mat-form-field>
+        <input matInput
+               placeholder="Collection Name"
+               formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               placeholder="Type"
+               formControlName="type">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput
+                  placeholder="Description"
+                  formControlName="description"
+                  rows="5"></textarea>
+      </mat-form-field>
+    </catalart-section>
+  </ng-container>

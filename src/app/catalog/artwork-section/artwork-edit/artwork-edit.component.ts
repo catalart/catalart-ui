@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { Artwork } from '../artwork.model';
 import { FormGroup } from '@angular/forms';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 import { ArtworkFormService } from '../artwork-form.service';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
+
+import { Artwork } from '../artwork.model';
 
 @Component({
   selector: 'artwork-edit',
@@ -38,12 +40,7 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
   private getArtwork(id: number): void {
     // Fill in with service call
     this.artwork = {
-      catalogLevel: {
-        id: 1,
-        text: 'Item',
-        label: 'ITEM'
-      },
-      objectType: 'painting',
+      id: 1,
       classificationTerm: 'paintings',
       title: 'Les Adieux de Télémaque et Eucharis',
       creator: {

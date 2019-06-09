@@ -1,13 +1,10 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title id="preview-title">{{artworkPreview.title}}</mat-card-title>
-    <mat-card-subtitle>{{artworkPreview.creatorIdentity}} ({{artworkPreview.creationDate}})</mat-card-subtitle>
+    <mat-card-title id="preview-title">{{artCollectionPreview.name}}</mat-card-title>
+    <mat-card-subtitle>{{artCollectionPreview.location}}</mat-card-subtitle>
   </mat-card-header>
   <div class="content">
-    <ng-container *ngIf="artworkPreview.preview else defaultImage">
-      <img mat-card-image [src]="artworkPreview.preview" alt="Default image preview">
-    </ng-container>
-    <ng-template #defaultImage><mat-icon mat-light class="default-icon">insert_photo</mat-icon></ng-template>
+    <mat-icon mat-light class="default-icon">collections</mat-icon>
   </div>
   <mat-card-actions align="end">
     <button mat-mini-fab

@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { RoutingModule } from 'src/app/routing.module';
 import { MaterialModule } from 'src/app/material.module';
 
-import { ArtworkObjectSectionComponent } from './sections/artwork-object-section/artwork-object-section.component';
 import { ArtworkCitationSectionComponent } from './sections/artwork-citation-section/artwork-citation-section.component';
 import { ArtworkCreationSectionComponent } from './sections/artwork-creation-section/artwork-creation-section.component';
 import { ArtworkLocationSectionComponent } from './sections/artwork-location-section/artwork-location-section.component';
@@ -16,7 +15,7 @@ import { ArtworkSubjectMatterSectionComponent } from './sections/artwork-subject
 import { ArtworkTitleSectionComponent } from './sections/artwork-title-section/artwork-title-section.component';
 import { ArtworkVisualDocumentationSectionComponent } from './sections/artwork-visual-documentation-section/artwork-visual-documentation-section.component';
 import { ArtworkClassificationSectionComponent } from './sections/artwork-classification-section/artwork-classification-section.component';
-import { CommonModule } from 'src/app/common/common.module';
+import { CatalartCommonModule } from 'src/app/common/catalart-common.module';
 import { ArtworkSectionsComponent } from './artwork-sections.component';
 
 @NgModule({
@@ -27,13 +26,19 @@ import { ArtworkSectionsComponent } from './artwork-sections.component';
     ArtworkLocationSectionComponent,
     ArtworkMaterialAndTechniquesSectionComponent,
     ArtworkMeasurementsSectionComponent,
-    ArtworkObjectSectionComponent,
     ArtworkSubjectMatterSectionComponent,
     ArtworkTitleSectionComponent,
     ArtworkVisualDocumentationSectionComponent,
     ArtworkSectionsComponent
   ],
-  imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    BrowserModule,
+    RoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    CatalartCommonModule
+  ],
   exports: [ArtworkSectionsComponent]
 })
 export class ArtworkSectionsModule {}
