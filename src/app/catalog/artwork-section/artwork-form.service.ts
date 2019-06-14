@@ -86,11 +86,11 @@ export class ArtworkFormService implements IFormService<Artwork> {
       ...this.mergeTitleSection(artworkFormValue.titleSection),
       ...this.mergeCreationSection(artworkFormValue.creationSection),
       ...this.mergeMeasurementsSection(artworkFormValue.measurementsSection),
-      ...this.mergeMaterialsAndTechniquesSection(form),
-      ...this.mergeSubjectMatterSection(form),
-      ...this.mergeLocationSection(form),
-      ...this.mergeVisualDocumentationSection(form),
-      ...this.mergeCitationSection(form)
+      ...this.mergeMaterialsAndTechniquesSection(artworkFormValue.materialsAndTechniquesSection),
+      ...this.mergeSubjectMatterSection(artworkFormValue.subjectMatterSection),
+      ...this.mergeLocationSection(artworkFormValue.locationSection),
+      ...this.mergeVisualDocumentationSection(artworkFormValue.visualDocumentationSection),
+      ...this.mergeCitationSection(artworkFormValue.citationSection)
     };
   }
 

@@ -60,4 +60,8 @@ export class ArtworkSectionsComponent {
   get citationForm() {
     return this.artworkForm.get('citationSection');
   }
+
+  get isFormInvalid() {
+    return this.artworkForm.invalid;
+  }
 }

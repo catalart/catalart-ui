@@ -1,38 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArtworkPreview } from './artwork-preview-card/artwork-preview.model';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+
+import { ArtworkService } from '../artwork.service';
+import { takeUntil, finalize } from 'rxjs/operators';
+import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 
 @Component({
   selector: 'artwork-list',
   templateUrl: './artwork-list.component.html',
   styleUrls: ['./artwork-list.component.scss']
 })
-export class ArtworkListComponent {
-  artCatalog: ArtworkPreview[] = [
-    {
-      id: 1,
-      creationDate: '1766-1782',
-      creatorIdentity: 'Michaelangelo',
-      preview: 'http://www.getty.edu/research/publications/electronic_publications/cdwa/examples/images/fig6.jpg',
-      title: 'Les Adieux de Télémaque et Eucharis'
-    },
-    {
-      id: 2,
-      creationDate: 'before 952 BCE',
-      creatorIdentity: 'Some bro',
-      preview: 'http://www.getty.edu/research/publications/electronic_publications/cdwa/examples/images/fig02.jpg',
-      title: 'Polyptych with Saint James Major, Madonna and Child, and various Saints'
-    },
-    {
-      id: 3,
-      creationDate: '1066 AD',
-      creatorIdentity: 'Gogh, Vincent van',
-      preview: '',
-      title: 'Starry Night'
-    }
-  ];
+export class ArtworkListComponent implements OnInit, OnDestroy {
+  artCatalog: ArtworkPreview[] = [];
+  loading = false;
 
-  constructor(private router: Router) {}
+  private destroyed: Subject<boolean> = new Subject<boolean>();
+
+  constructor(private router: Router, private artworkService: ArtworkService, private sms: SnackbarMessagingService) {}
+
+  ngOnInit() {
+    this.loading = true;
+    this.artworkService
+      .getAllArtwork()
+      .pipe(
+        takeUntil(this.destroyed),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe(
+        artwork => {
+          this.artCatalog = artwork;
+        },
+        error => this.sms.displayError(error)
+      );
+  }
+
+  ngOnDestroy() {}
 
   onViewClicked(artworkPreview: ArtworkPreview) {
     this.router.navigateByUrl(`artwork/view/${artworkPreview.id}`);

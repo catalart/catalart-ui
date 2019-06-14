@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { RoutingModule } from '../../routing.module';
 import { MaterialModule } from '../../material.module';
@@ -12,9 +13,10 @@ import { ArtworkListComponent } from './artwork-list/artwork-list.component';
 import { ArtworkPreviewCardComponent } from './artwork-list/artwork-preview-card/artwork-preview-card.component';
 import { ArtworkEditComponent } from './artwork-edit/artwork-edit.component';
 import { ArtworkSectionComponent } from './artwork-section.component';
+import { ArtworkAddComponent } from './artwork-add/artwork-add.component';
 
 import { ArtworkFormService } from './artwork-form.service';
-import { ArtworkAddComponent } from './artwork-add/artwork-add.component';
+import { ArtworkService } from './artwork.service';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,9 @@ import { ArtworkAddComponent } from './artwork-add/artwork-add.component';
     MaterialModule,
     ReactiveFormsModule,
     ArtworkSectionsModule,
-    CatalartCommonModule
+    CatalartCommonModule,
+    HttpClientModule
   ],
-  providers: [ArtworkFormService]
+  providers: [ArtworkFormService, ArtworkService]
 })
 export class ArtworkModule {}

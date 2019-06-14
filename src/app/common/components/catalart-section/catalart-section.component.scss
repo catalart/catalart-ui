@@ -10,8 +10,11 @@ mat-expansion-panel {
 mat-icon.validation-error {
   font-size: 18px;
   height: 18px;
-  position: absolute;
-  left: 14px;
+  margin-right: -5px;
+}
+
+mat-expansion-panel-header.catalart-header {
+  padding-left: 5px;
 }
 
 .title {
