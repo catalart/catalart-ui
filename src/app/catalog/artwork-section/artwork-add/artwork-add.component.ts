@@ -37,19 +37,23 @@ export class ArtworkAddComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    this.saving = true;
-    const createdArtwork = this.artworkFormService.mergeForm(this.artworkForm, new Artwork());
-    this.artworkService
-      .createArtwork(createdArtwork)
-      .pipe(
-        takeUntil(this.destroyed),
-        finalize(() => (this.saving = false))
-      )
-      .subscribe(
-        () => {
-          this.router.navigateByUrl('artwork/list');
-        },
-        error => this.sms.displayError(error)
-      );
+    if (this.artworkForm.valid) {
+      const createdArtwork = this.artworkFormService.mergeForm(this.artworkForm, new Artwork());
+      this.saving = true;
+      this.artworkService
+        .createArtwork(createdArtwork)
+        .pipe(
+          takeUntil(this.destroyed),
+          finalize(() => (this.saving = false))
+        )
+        .subscribe(
+          () => {
+            this.router.navigateByUrl('artwork/list');
+          },
+          error => this.sms.displayError(error)
+        );
+    } else {
+      this.sms.displayErrorMessage('Unable to add artwork since the form is invalid/incomplete.');
+    }
   }
 }

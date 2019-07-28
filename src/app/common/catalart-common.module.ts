@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CatalartDropdownComponent } from './components/catalart-dropdown/catalart-dropdown.component';
 import { CatalartTagsComponent } from './components/catalart-tags/catalart-tags.component';
 import { CatalartSectionContainerComponent } from './components/section-container/catalart-section-container.component';
+import { LoadingMaskComponent } from './components/loading-mask/loading-mask.component';
 
 @NgModule({
   imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule],
@@ -15,13 +16,15 @@ import { CatalartSectionContainerComponent } from './components/section-containe
     CatalartSectionComponent,
     CatalartDropdownComponent,
     CatalartTagsComponent,
-    CatalartSectionContainerComponent
+    CatalartSectionContainerComponent,
+    LoadingMaskComponent
   ],
   exports: [
     CatalartSectionComponent,
     CatalartDropdownComponent,
     CatalartTagsComponent,
-    CatalartSectionContainerComponent
+    CatalartSectionContainerComponent,
+    LoadingMaskComponent
   ]
 })
 export class CatalartCommonModule {}

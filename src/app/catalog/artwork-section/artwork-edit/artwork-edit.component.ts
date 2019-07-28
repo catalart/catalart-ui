@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, finalize } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { ArtworkFormService } from '../artwork-form.service';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 
 import { Artwork } from '../artwork.model';
+import { ArtworkService } from '../artwork.service';
 
 @Component({
   selector: 'artwork-edit',
@@ -16,6 +17,8 @@ import { Artwork } from '../artwork.model';
 export class ArtworkEditComponent implements OnInit, OnDestroy {
   artwork: Artwork;
   artworkForm: FormGroup;
+  artworkLoading = false;
+  artworkSaving = false;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -23,7 +26,8 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private artworkFormService: ArtworkFormService,
     private sms: SnackbarMessagingService,
-    private router: Router
+    private router: Router,
+    private artworkService: ArtworkService
   ) {}
 
   ngOnInit() {
@@ -38,31 +42,41 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
   }
 
   private getArtwork(id: number): void {
-    // Fill in with service call
-    this.artwork = {
-      id: 1,
-      classificationTerm: 'paintings',
-      title: 'Les Adieux de Télémaque et Eucharis',
-      creator: {
-        identity: 'Michaelangelo',
-        role: 'painter'
-      },
-      creationDate: {
-        earliestDate: '1000 BC',
-        latestDate: '2000 AD'
-      },
-      dimensions: '1000cm x 2000cm',
-      materialsAndTechniquesDescription: 'Oil Painting',
-      generalSubjectTerms: ['woman', 'child', 'room'],
-      currentLocation: 'Metropolitan Museum of Art',
-      preview: 'http://www.getty.edu/research/publications/electronic_publications/cdwa/examples/images/fig6.jpg',
-      citation: 'some citation'
-    };
-    this.artworkForm = this.artworkFormService.buildForm(this.artwork);
+    this.artworkLoading = true;
+    this.artworkService
+      .getArtworkById(id)
+      .pipe(
+        takeUntil(this.destroyed),
+        finalize(() => (this.artworkLoading = false))
+      )
+      .subscribe(
+        (artwork: Artwork) => {
+          this.artwork = artwork;
+          this.artworkForm = this.artworkFormService.buildForm(this.artwork);
+        },
+        error => this.sms.displayError(error)
+      );
   }
 
-  onSave() {
-    this.sms.displayMessage('Save is not implemented yet');
-    this.router.navigateByUrl('artwork/list');
+  onSave(): void {
+    if (this.artworkForm.valid) {
+      const updatedArtwork = this.artworkFormService.mergeForm(this.artworkForm, this.artwork);
+      this.artworkSaving = true;
+      this.artworkService
+        .saveArtwork(updatedArtwork.id, updatedArtwork)
+        .pipe(
+          takeUntil(this.destroyed),
+          finalize(() => (this.artworkSaving = false))
+        )
+        .subscribe(
+          () => {
+            this.sms.displaySuccess('Artwork saved.');
+            this.router.navigateByUrl('artwork/list');
+          },
+          error => this.sms.displayError(error)
+        );
+    } else {
+      this.sms.displayErrorMessage('Unable to save artwork since the form is invalid/incomplete.');
+    }
   }
 }

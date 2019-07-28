@@ -1,17 +1,22 @@
-<span class="artwork-sections" [formGroup]="artworkForm">
-  <span class="button-group">
-    <button mat-button (click)="cancelClicked()">Cancel <mat-icon class="button-icon">cancel</mat-icon></button>
-    <button mat-button class="save" [disabled]="isFormInvalid" (click)="saveClicked()">Save <mat-icon class="button-icon">save</mat-icon></button>
+<ng-container *ngIf="!loading else loadingMask">
+  <span class="artwork-sections" [formGroup]="artworkForm">
+    <span class="button-group">
+      <button mat-button (click)="cancelClicked()">Cancel <mat-icon class="button-icon">cancel</mat-icon></button>
+      <button mat-button class="save" [disabled]="isFormInvalid" (click)="saveClicked()">Save <mat-icon class="button-icon">save</mat-icon></button>
+    </span>
+    <catalart-section-container>
+      <artwork-title-section [artworkTitleForm]="titleForm"></artwork-title-section>
+      <artwork-classification-section [artworkClassificationForm]="classificationForm"></artwork-classification-section>
+      <artwork-creation-section [artworkCreationForm]="creationForm"></artwork-creation-section>
+      <artwork-subject-matter-section [artworkSubjectMatterForm]="subjectMatterForm"></artwork-subject-matter-section>
+      <artwork-material-and-techniques-section [artworkMaterialAndTechniquesForm]="materialsAndTechniquesForm"></artwork-material-and-techniques-section>
+      <artwork-measurements-section [artworkMeasurementsForm]="measurementsForm"></artwork-measurements-section>
+      <artwork-location-section [artworkLocationForm]="locationForm"></artwork-location-section>
+      <artwork-visual-documentation-section [artworkVisualDocumentationForm]="visualDocumentationForm"></artwork-visual-documentation-section>
+      <artwork-citation-section [artworkCitationForm]="citationForm"></artwork-citation-section>
+    </catalart-section-container>
   </span>
-  <catalart-section-container>
-    <artwork-title-section [artworkTitleForm]="titleForm"></artwork-title-section>
-    <artwork-classification-section [artworkClassificationForm]="classificationForm"></artwork-classification-section>
-    <artwork-creation-section [artworkCreationForm]="creationForm"></artwork-creation-section>
-    <artwork-subject-matter-section [artworkSubjectMatterForm]="subjectMatterForm"></artwork-subject-matter-section>
-    <artwork-material-and-techniques-section [artworkMaterialAndTechniquesForm]="materialsAndTechniquesForm"></artwork-material-and-techniques-section>
-    <artwork-measurements-section [artworkMeasurementsForm]="measurementsForm"></artwork-measurements-section>
-    <artwork-location-section [artworkLocationForm]="locationForm"></artwork-location-section>
-    <artwork-visual-documentation-section [artworkVisualDocumentationForm]="visualDocumentationForm"></artwork-visual-documentation-section>
-    <artwork-citation-section [artworkCitationForm]="citationForm"></artwork-citation-section>
-  </catalart-section-container>
-</span>
+</ng-container>
+<ng-template #loadingMask>
+  <loading-mask></loading-mask>
+</ng-template>

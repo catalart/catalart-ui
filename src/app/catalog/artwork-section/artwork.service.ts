@@ -10,11 +10,19 @@ import { map } from 'rxjs/operators';
 export class ArtworkService {
   constructor(private http: HttpClient) {}
 
+  getAllArtwork(): Observable<ArtworkPreview[]> {
+    return this.http.get(`${environment.API_URL}/artwork`).pipe(map(result => result as ArtworkPreview[]));
+  }
+
+  getArtworkById(id: number): Observable<Artwork> {
+    return this.http.get(`${environment.API_URL}/artwork/${id}`).pipe(map(result => result as Artwork));
+  }
+
   createArtwork(artwork: Artwork): Observable<any> {
     return this.http.post(`${environment.API_URL}/artwork`, artwork);
   }
 
-  getAllArtwork(): Observable<ArtworkPreview[]> {
-    return this.http.get(`${environment.API_URL}/artwork`).pipe(map(result => result as ArtworkPreview[]));
+  saveArtwork(id: number, artwork: Artwork): Observable<any> {
+    return this.http.post(`${environment.API_URL}/artwork/${id}`, artwork);
   }
 }

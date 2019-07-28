@@ -110,7 +110,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
     return {
       creator: {
         identity: creationSection.creatorIdentity,
-        role: creationSection.role
+        role: creationSection.creationRole
       },
       creationDate: {
         earliestDate: creationSection.creationEarliestDate,
