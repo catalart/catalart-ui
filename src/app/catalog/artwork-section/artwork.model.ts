@@ -1,6 +1,5 @@
-import { Enumeration } from 'src/app/common/models/enumeration.model';
-
 export class Creator {
+  id: number;
   identity: string;
   role: string;
 }

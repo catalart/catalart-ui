@@ -4,18 +4,7 @@
                       [description]="'The creation, design, execution, or production of a work of art or architecture and its components.'"
                       [invalid]="artworkCreationForm.invalid"
                       [icon]="'date_range'">
-      <mat-form-field>
-        <input matInput
-               placeholder="Creator Identity"
-               formControlName="creatorIdentity"
-               required>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput
-               placeholder="Creator Role"
-               formControlName="creationRole"
-               required>
-      </mat-form-field>
+      <artwork-creator-section [artworkCreatorForm]="artworkCreatorForm"></artwork-creator-section>
       <mat-form-field>
         <input matInput
                placeholder="Earliest Creation Date"

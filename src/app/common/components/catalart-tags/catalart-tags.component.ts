@@ -21,7 +21,7 @@ export class CatalartTagsComponent implements ControlValueAccessor {
   onTouch: any = () => {};
 
   set value(tags: string[]) {
-    this.tags = [...new Set(tags)];
+    this.tags = tags;
     this.onChange(tags);
     this.onTouch(tags);
   }
@@ -31,7 +31,11 @@ export class CatalartTagsComponent implements ControlValueAccessor {
   }
 
   addTag(tag: string) {
-    this.value = [...this.tags, tag];
+    if (!!this.tags && this.tags.length > 0) {
+      this.value = [...new Set([...this.tags, tag])];
+    } else {
+      this.value = [tag];
+    }
   }
 
   onEnter() {

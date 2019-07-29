@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Are you sure?</h2>
+<mat-dialog-content *ngIf="message">{{message}}</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{cancelText}}</button>
+  <button mat-button [mat-dialog-close]="true">{{confirmationText}}</button>
+</mat-dialog-actions>

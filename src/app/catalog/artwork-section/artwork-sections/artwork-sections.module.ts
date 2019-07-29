@@ -17,6 +17,7 @@ import { ArtworkVisualDocumentationSectionComponent } from './sections/artwork-v
 import { ArtworkClassificationSectionComponent } from './sections/artwork-classification-section/artwork-classification-section.component';
 import { CatalartCommonModule } from 'src/app/common/catalart-common.module';
 import { ArtworkSectionsComponent } from './artwork-sections.component';
+import { ArtworkCreatorSectionComponent } from './sections/artwork-creation-section/artwork-creator-section/artwork-creator-section.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ArtworkSectionsComponent } from './artwork-sections.component';
     ArtworkSubjectMatterSectionComponent,
     ArtworkTitleSectionComponent,
     ArtworkVisualDocumentationSectionComponent,
-    ArtworkSectionsComponent
+    ArtworkSectionsComponent,
+    ArtworkCreatorSectionComponent
   ],
   imports: [
     BrowserModule,

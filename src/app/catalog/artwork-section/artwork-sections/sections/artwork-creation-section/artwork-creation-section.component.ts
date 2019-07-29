@@ -7,4 +7,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class ArtworkCreationSectionComponent {
   @Input() artworkCreationForm: FormGroup;
+
+  get artworkCreatorForm(): FormGroup {
+    return this.artworkCreationForm.get('creatorForm') as FormGroup;
+  }
 }

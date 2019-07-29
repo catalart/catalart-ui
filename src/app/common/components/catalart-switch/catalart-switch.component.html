@@ -1,0 +1,10 @@
+<div class="switch-label">Label for switch</div>
+<mat-button-toggle-group>
+  <mat-button-toggle (change)="value = false">
+    {{falseText}}
+  </mat-button-toggle>
+  <mat-button-toggle (change)="value = true">
+    {{trueText}}
+  </mat-button-toggle>
+</mat-button-toggle-group>
+<mat-divider></mat-divider>

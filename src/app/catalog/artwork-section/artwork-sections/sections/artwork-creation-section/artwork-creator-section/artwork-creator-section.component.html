@@ -1,0 +1,25 @@
+<ng-container [formGroup]="artworkCreatorForm">
+  <catalart-switch formControlName="addNewArtist">
+  </catalart-switch>
+  <ng-container *ngIf="addNewArtist.value else chooseArtist">
+    <mat-form-field>
+      <input matInput
+             placeholder="Creator Identity"
+             formControlName="identity"
+             required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             placeholder="Creator Role"
+             formControlName="role"
+             required>
+    </mat-form-field>
+  </ng-container>
+  <ng-template #chooseArtist>
+    <catalart-dropdown formControlName="creator"
+                       [options]="artistOptions"
+                       [loading]="artistsLoading"
+                       [placeholderText]="'Choose Artist'">
+    </catalart-dropdown>
+  </ng-template>
+</ng-container>

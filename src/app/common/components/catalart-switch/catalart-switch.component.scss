@@ -1,0 +1,21 @@
+:host {
+  ::ng-deep button div.mat-button-toggle-label-content {
+    line-height: 30px;
+    padding: 0 30px;
+  }
+
+  mat-button-toggle-group {
+    margin-bottom: 10px;
+  }
+
+  mat-divider {
+    border-top-color: rgba(0, 0, 0, 0.42);
+  }
+
+  .switch-label {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 11px;
+  }
+
+  margin-bottom: 15px;
+}

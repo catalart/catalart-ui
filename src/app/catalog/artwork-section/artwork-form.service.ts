@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
-import { Artwork } from './artwork.model';
+import { Artwork, Creator } from './artwork.model';
 import { IFormService } from 'src/app/common/models/form-service.interface';
+import { Enumeration } from 'src/app/common/models/enumeration.model';
 
 @Injectable()
 export class ArtworkFormService implements IFormService<Artwork> {
@@ -35,10 +36,18 @@ export class ArtworkFormService implements IFormService<Artwork> {
 
   private buildCreationSection(artwork: Artwork): FormGroup {
     return this.fb.group({
-      creatorIdentity: [artwork.creator.identity, [Validators.required]],
-      creationRole: [artwork.creator.role, [Validators.required]],
+      creatorForm: this.buildCreatorForm(artwork.creator),
       creationEarliestDate: [artwork.creationDate.earliestDate, [Validators.required]],
       creationLatestDate: [artwork.creationDate.latestDate, [Validators.required]]
+    });
+  }
+
+  private buildCreatorForm(creator: Creator): FormGroup {
+    return this.fb.group({
+      addNewArtist: false,
+      creator: new Enumeration(creator.id, creator.identity),
+      identity: creator.identity,
+      role: creator.role
     });
   }
 
@@ -80,8 +89,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
 
   mergeForm(form: FormGroup, artwork: Artwork): Artwork {
     const artworkFormValue = form.value;
-    return {
-      ...artwork,
+    return Object.assign(artwork, {
       ...this.mergeClassificationSection(artworkFormValue.classificationSection),
       ...this.mergeTitleSection(artworkFormValue.titleSection),
       ...this.mergeCreationSection(artworkFormValue.creationSection),
@@ -91,7 +99,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
       ...this.mergeLocationSection(artworkFormValue.locationSection),
       ...this.mergeVisualDocumentationSection(artworkFormValue.visualDocumentationSection),
       ...this.mergeCitationSection(artworkFormValue.citationSection)
-    };
+    });
   }
 
   private mergeClassificationSection(classificationSection: any): Partial<Artwork> {
@@ -108,15 +116,24 @@ export class ArtworkFormService implements IFormService<Artwork> {
 
   private mergeCreationSection(creationSection: any): Partial<Artwork> {
     return {
-      creator: {
-        identity: creationSection.creatorIdentity,
-        role: creationSection.creationRole
-      },
+      creator: this.mergeCreatorSection(creationSection.creatorForm),
       creationDate: {
         earliestDate: creationSection.creationEarliestDate,
         latestDate: creationSection.creationLatestDate
       }
     };
+  }
+
+  private mergeCreatorSection(creator: any): Creator {
+    if (!creator.addNewArtist) {
+      return Object.assign(new Creator(), {
+        id: creator.creator.id
+      });
+    }
+    return Object.assign(new Creator(), {
+      identity: creator.identity,
+      role: creator.role
+    });
   }
 
   private mergeMeasurementsSection(measurementsSection: any): Partial<Artwork> {

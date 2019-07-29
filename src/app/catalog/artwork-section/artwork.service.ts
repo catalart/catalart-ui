@@ -23,6 +23,10 @@ export class ArtworkService {
   }
 
   saveArtwork(id: number, artwork: Artwork): Observable<any> {
-    return this.http.post(`${environment.API_URL}/artwork/${id}`, artwork);
+    return this.http.put(`${environment.API_URL}/artwork/${id}`, artwork);
+  }
+
+  deleteArtwork(id: number): Observable<any> {
+    return this.http.delete(`${environment.API_URL}/artwork/${id}`);
   }
 }
