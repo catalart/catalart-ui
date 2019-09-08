@@ -4,14 +4,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { RoutingModule } from './routing.module';
-import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
-import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
+import { CatalogModule } from './catalog/catalog.module';
+import { CatalartCommonModule } from './common/catalart-common.module';
+import { ComplexSearchModule } from './complex-search/complex-search.module';
+
+import { ResponseInterceptor } from './interceptors/response.interceptor';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RoutingModule, BrowserAnimationsModule, MaterialModule, AdminDashboardModule],
+  imports: [
+    BrowserModule,
+    RoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    AdminDashboardModule,
+    CatalogModule,
+    CatalartCommonModule,
+    ComplexSearchModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

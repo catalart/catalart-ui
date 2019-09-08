@@ -1,0 +1,15 @@
+<span class="search-bar">
+  <mat-form-field>
+    <input type="text" placeholder="Search (disabled)" disabled matInput>
+  </mat-form-field>
+  <span class="button-group">
+    <button mat-fab color="primary" aria-label="Add new art collection" (click)="addClicked()"><mat-icon>add</mat-icon></button>
+  </span>
+</span>
+<catalart-section-container>
+  <art-collection-preview-card *ngFor="let artCollectionPreview of artCollectionCatalog"
+                               [artCollectionPreview]="artCollectionPreview"
+                               (onViewClicked)="onViewClicked(artCollectionPreview)"
+                               (onEditClicked)="onEditClicked(artCollectionPreview)"
+                               (onDeleteClicked)="onDeleteClicked(artCollectionPreview)"></art-collection-preview-card>
+</catalart-section-container>

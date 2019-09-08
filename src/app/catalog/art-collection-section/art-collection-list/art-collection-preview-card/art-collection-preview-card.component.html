@@ -1,0 +1,32 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title id="preview-title">{{artCollectionPreview.name}}</mat-card-title>
+    <mat-card-subtitle>{{artCollectionPreview.location}}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="content">
+    <mat-icon mat-light class="default-icon">collections</mat-icon>
+  </div>
+  <mat-card-actions align="end">
+    <button mat-mini-fab
+            (click)="onViewClicked.emit()"
+            title="View"
+            class="action-icon"
+            color="primary">
+      <mat-icon>pageview</mat-icon>
+    </button>
+    <button mat-mini-fab
+            (click)="onEditClicked.emit()"
+            title="Edit"
+            class="action-icon"
+            color="primary">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab
+            (click)="onDeleteClicked.emit()"
+            title="Delete"
+            class="action-icon"
+            color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

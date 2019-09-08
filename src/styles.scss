@@ -9,6 +9,10 @@
   color: #00c853 !important;
 }
 
+.warning-snackbar {
+  color: #ffae42 !important;
+}
+
 html,
 body {
   height: 100%;
@@ -17,4 +21,10 @@ body {
 
 span:focus {
   outline: none !important;
+}
+
+.button-icon {
+  margin-right: -10px;
+  line-height: 22px;
+  font-size: 20px;
 }

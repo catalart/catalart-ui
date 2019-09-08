@@ -1,0 +1,13 @@
+<ng-container [formGroup]="artworkMaterialAndTechniquesForm">
+  <catalart-section [title]="'Materials/Techniques'"
+                    [description]="'The substances or materials used in the creation of a work of art.'"
+                    [invalid]="artworkMaterialAndTechniquesForm.invalid"
+                    [icon]="'assignment'">
+    <mat-form-field>
+      <input matInput
+             placeholder="Materials and Techniques Description"
+             formControlName="materialsAndTechniquesDescription"
+             required>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

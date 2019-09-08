@@ -23,6 +23,14 @@ export class SnackbarMessagingService {
     });
   }
 
+  displayWarningMessage(error: string, duration: number = 4000, action?: string): void {
+    this.snackBar.open(error, action, {
+      announcementMessage: error,
+      duration,
+      panelClass: 'warning-snackbar'
+    });
+  }
+
   displaySuccess(message: string, duration: number = 4000, action?: string): void {
     this.snackBar.open(message, action, {
       announcementMessage: message,

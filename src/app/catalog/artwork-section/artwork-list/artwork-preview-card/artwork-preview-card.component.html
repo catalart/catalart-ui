@@ -1,0 +1,35 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title id="preview-title">{{artworkPreview.title}}</mat-card-title>
+    <mat-card-subtitle>{{artworkPreview.creatorIdentity}} ({{artworkPreview.creationDate}})</mat-card-subtitle>
+  </mat-card-header>
+  <div class="content">
+    <ng-container *ngIf="artworkPreview.preview else defaultImage">
+      <img mat-card-image [src]="artworkPreview.preview" alt="Default image preview">
+    </ng-container>
+    <ng-template #defaultImage><mat-icon mat-light class="default-icon">insert_photo</mat-icon></ng-template>
+  </div>
+  <mat-card-actions align="end">
+    <button mat-mini-fab
+            (click)="onViewClicked.emit()"
+            title="View"
+            class="action-icon"
+            color="primary">
+      <mat-icon>pageview</mat-icon>
+    </button>
+    <button mat-mini-fab
+            (click)="onEditClicked.emit()"
+            title="Edit"
+            class="action-icon"
+            color="primary">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab
+            (click)="onDeleteClicked.emit()"
+            title="Delete"
+            class="action-icon"
+            color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
