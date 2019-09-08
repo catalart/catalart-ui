@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class ArtCollectionSectionsComponent {
   @Input() artCollectionForm: FormGroup;
+  @Input() loading: boolean;
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router) {}

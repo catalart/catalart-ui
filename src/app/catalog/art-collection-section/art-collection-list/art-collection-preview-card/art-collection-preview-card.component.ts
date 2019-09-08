@@ -10,4 +10,5 @@ export class ArtCollectionPreviewCardComponent {
   @Input() artCollectionPreview: ArtCollectionPreview;
   @Output() onViewClicked: EventEmitter<any> = new EventEmitter();
   @Output() onEditClicked: EventEmitter<any> = new EventEmitter();
+  @Output() onDeleteClicked: EventEmitter<any> = new EventEmitter();
 }

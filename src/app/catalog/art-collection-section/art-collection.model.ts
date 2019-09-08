@@ -7,6 +7,5 @@ export class ArtCollection {
   description: string;
   location: string;
   containsArtCollections: boolean;
-  artCollections: Option[];
   artwork: Option[];
 }

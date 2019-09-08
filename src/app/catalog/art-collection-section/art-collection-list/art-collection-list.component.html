@@ -10,5 +10,6 @@
   <art-collection-preview-card *ngFor="let artCollectionPreview of artCollectionCatalog"
                                [artCollectionPreview]="artCollectionPreview"
                                (onViewClicked)="onViewClicked(artCollectionPreview)"
-                               (onEditClicked)="onEditClicked(artCollectionPreview)"></art-collection-preview-card>
+                               (onEditClicked)="onEditClicked(artCollectionPreview)"
+                               (onDeleteClicked)="onDeleteClicked(artCollectionPreview)"></art-collection-preview-card>
 </catalart-section-container>

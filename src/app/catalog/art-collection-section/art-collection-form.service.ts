@@ -25,9 +25,8 @@ export class ArtCollectionFormService implements IFormService<ArtCollection> {
 
   private buildCollectionSection(artCollection: ArtCollection): FormGroup {
     return this.fb.group({
-      containsArtCollections: [artCollection.containsArtCollections, [Validators.required]],
-      artwork: [artCollection.artwork],
-      artCollections: [artCollection.artCollections]
+      containsArtCollections: [artCollection.containsArtCollections],
+      artwork: [artCollection.artwork]
     });
   }
 
@@ -52,9 +51,7 @@ export class ArtCollectionFormService implements IFormService<ArtCollection> {
 
   private mergeCollectionSection(collectionSection: any): Partial<ArtCollection> {
     return {
-      containsArtCollections: collectionSection.containsArtCollections,
-      artwork: collectionSection.artwork,
-      artCollections: collectionSection.artCollection
+      artwork: collectionSection.artwork
     };
   }
 }

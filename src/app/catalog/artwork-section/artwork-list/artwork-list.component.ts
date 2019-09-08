@@ -49,9 +49,6 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteClicked(artworkPreview: ArtworkPreview) {
-    // Show delete modal
-    console.log('Delete' + artworkPreview.id);
-
     this.dialog
       .open(CatalartConfirmationDialogComponent, {
         width: '300px'
