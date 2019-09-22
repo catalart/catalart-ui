@@ -19,7 +19,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class CatalartMultiSelectComponent implements ControlValueAccessor {
   @Input() options: Option[] = [];
   @Input() loading: boolean;
-  @Input('value') selectedOptions: Option[] = [];
+  @Input() selectedOptions: Option[] = [];
 
   leftSideOptions: Option[] = [];
   rightSideOptions: Option[] = [];
@@ -28,6 +28,7 @@ export class CatalartMultiSelectComponent implements ControlValueAccessor {
   onTouch: any = () => {};
 
   set value(options: Option[]) {
+    this.selectedOptions = options;
     this.onChange(options);
     this.onTouch(options);
     this.refreshOptions();
@@ -50,6 +51,7 @@ export class CatalartMultiSelectComponent implements ControlValueAccessor {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.value = [...this.rightSideOptions];
     }
   }
 
