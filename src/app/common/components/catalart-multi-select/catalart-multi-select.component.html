@@ -1,0 +1,29 @@
+<div class="catalart-multi-select-container">
+  <div class="multi-select-container">
+    <div class="left-side-container"
+         cdkDropList
+         #selectableList="cdkDropList"
+         [cdkDropListData]="leftSideOptions"
+         [cdkDropListConnectedTo]="[chosenList]"
+         (cdkDropListDropped)="drop($event)">
+      <div class="item" *ngFor="let item of leftSideOptions" cdkDrag>{{item.text}}</div>
+    </div>
+    <div class="middle-buttons">
+      <button mat-icon-button class="move-all-right" (click)="onMoveAllRight()"><mat-icon>last_page</mat-icon></button>
+      <button mat-icon-button class="move-selected-right"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      <button mat-icon-button class="move-selected-left"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <button mat-icon-button class="move-all-left" (click)="onMoveAllLeft()"><mat-icon>first_page</mat-icon></button>
+    </div>
+    <div class="right-side-container"
+         cdkDropList
+         #chosenList="cdkDropList"
+         [cdkDropListData]="rightSideOptions"
+         [cdkDropListConnectedTo]="[selectableList]"
+         (cdkDropListDropped)="drop($event)">
+      <div class="item" *ngFor="let item of rightSideOptions" cdkDrag>{{item.text}}</div>
+    </div>
+  </div>
+</div>
+<ng-template #loadingMask>
+  <loading-mask></loading-mask>
+</ng-template>

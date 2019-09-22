@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { ArtCollection } from './art-collection.model';
+import { Option } from 'src/app/common/models/option.model';
 
 @Injectable()
 export class ArtCollectionFormService implements IFormService<ArtCollection> {
@@ -26,7 +27,7 @@ export class ArtCollectionFormService implements IFormService<ArtCollection> {
   private buildCollectionSection(artCollection: ArtCollection): FormGroup {
     return this.fb.group({
       containsArtCollections: [artCollection.containsArtCollections],
-      artwork: [artCollection.artwork]
+      artwork: [[new Option(1, 'Test artwork'), new Option(2, 'Test artwork 2'), new Option(3, 'Test artwork 3')]]
     });
   }
 
