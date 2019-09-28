@@ -4,6 +4,7 @@
       <ul class="left-side-container"
            cdkDropList
            #selectableList="cdkDropList"
+           cdkDropListSortingDisabled
            [cdkDropListData]="leftSideOptions"
            [cdkDropListConnectedTo]="[chosenList]"
            (cdkDropListDropped)="drop($event)">
@@ -24,6 +25,7 @@
       <ul class="right-side-container"
            cdkDropList
            #chosenList="cdkDropList"
+           cdkDropListSortingDisabled
            [cdkDropListData]="rightSideOptions"
            [cdkDropListConnectedTo]="[selectableList]"
            (cdkDropListDropped)="drop($event)">

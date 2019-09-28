@@ -2,7 +2,7 @@ import { Component, Input, SimpleChanges, OnChanges, ChangeDetectorRef, OnInit }
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Option } from '../../models/option.model';
 import { _getOptionScrollPosition } from '@angular/material';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'catalart-multi-select',
@@ -16,7 +16,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
     }
   ]
 })
-export class CatalartMultiSelectComponent implements ControlValueAccessor {
+export class CatalartMultiSelectComponent implements ControlValueAccessor, OnChanges {
   @Input() options: Option[] = [];
   @Input() loading: boolean;
   @Input() selectedOptions: Option[] = [];
@@ -26,11 +26,17 @@ export class CatalartMultiSelectComponent implements ControlValueAccessor {
   private stagedLeftList: Option[] = [];
   private stagedRightList: Option[] = [];
 
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    if (simpleChanges.options) {
+      this.refreshOptions();
+    }
+  }
+
   onChange: any = () => {};
   onTouch: any = () => {};
 
   set value(options: Option[]) {
-    this.selectedOptions = options;
+    this.selectedOptions = options || [];
     this.onChange(options);
     this.onTouch(options);
     this.refreshOptions();
@@ -104,8 +110,8 @@ export class CatalartMultiSelectComponent implements ControlValueAccessor {
 
   moveStagedLeft() {
     this.leftSideOptions = [...this.leftSideOptions, ...this.stagedRightList];
-    this.rightSideOptions = this.rightSideOptions.filter(option =>
-      this.stagedRightList.some(right => right.id === option.id)
+    this.rightSideOptions = this.rightSideOptions.filter(
+      option => !this.stagedRightList.some(right => right.id === option.id)
     );
     this.value = [...this.rightSideOptions];
     this.stagedRightList = [];
