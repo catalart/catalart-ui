@@ -12,6 +12,7 @@ import { LoadingMaskComponent } from './components/loading-mask/loading-mask.com
 import { CatalartSwitchComponent } from './components/catalart-switch/catalart-switch.component';
 import { CatalartConfirmationDialogComponent } from './components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
 import { CatalartMultiSelectComponent } from './components/catalart-multi-select/catalart-multi-select.component';
+import { CatalartButtonComponent } from './components/catalart-button/catalart-button.component';
 
 @NgModule({
   imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule],
@@ -24,7 +25,8 @@ import { CatalartMultiSelectComponent } from './components/catalart-multi-select
     LoadingMaskComponent,
     CatalartSwitchComponent,
     CatalartConfirmationDialogComponent,
-    CatalartMultiSelectComponent
+    CatalartMultiSelectComponent,
+    CatalartButtonComponent
   ],
   exports: [
     CatalartSectionComponent,
@@ -34,7 +36,8 @@ import { CatalartMultiSelectComponent } from './components/catalart-multi-select
     LoadingMaskComponent,
     CatalartSwitchComponent,
     CatalartConfirmationDialogComponent,
-    CatalartMultiSelectComponent
+    CatalartMultiSelectComponent,
+    CatalartButtonComponent
   ]
 })
 export class CatalartCommonModule {}

@@ -5,17 +5,24 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ArtworkPreview } from './artwork-list/artwork-preview-card/artwork-preview.model';
 import { map } from 'rxjs/operators';
+import { Option } from 'src/app/common/models/option.model';
 
 @Injectable()
 export class ArtworkService {
   constructor(private http: HttpClient) {}
 
   getAllArtwork(): Observable<ArtworkPreview[]> {
-    return this.http.get(`${environment.API_URL}/artwork`).pipe(map(result => result as ArtworkPreview[]));
+    return this.http.get<ArtworkPreview[]>(`${environment.API_URL}/artwork`);
+  }
+
+  getAllArtworkAsOptions(): Observable<Option[]> {
+    return this.http
+      .get<ArtworkPreview[]>(`${environment.API_URL}/artwork`)
+      .pipe(map(result => result.map(r => new Option(r.id, r.title))));
   }
 
   getArtworkById(id: number): Observable<Artwork> {
-    return this.http.get(`${environment.API_URL}/artwork/${id}`).pipe(map(result => result as Artwork));
+    return this.http.get<Artwork>(`${environment.API_URL}/artwork/${id}`);
   }
 
   createArtwork(artwork: Artwork): Observable<any> {
