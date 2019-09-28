@@ -32,7 +32,7 @@ export class CatalartTagsComponent implements ControlValueAccessor {
 
   addTag(tag: string) {
     if (!!this.tags && this.tags.length > 0) {
-      this.value = [...new Set([...this.tags, tag])];
+      this.value = Array.from(new Set([...this.tags, tag]));
     } else {
       this.value = [tag];
     }
