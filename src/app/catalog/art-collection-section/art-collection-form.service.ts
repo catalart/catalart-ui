@@ -27,7 +27,7 @@ export class ArtCollectionFormService implements IFormService<ArtCollection> {
   private buildCollectionSection(artCollection: ArtCollection): FormGroup {
     return this.fb.group({
       containsArtCollections: [artCollection.containsArtCollections],
-      artwork: [[new Option(1, 'Test artwork'), new Option(2, 'Test artwork 2'), new Option(3, 'Test artwork 3')]]
+      artwork: [artCollection.artwork]
     });
   }
 
