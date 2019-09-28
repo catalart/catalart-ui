@@ -2,7 +2,13 @@
   <span class="artwork-sections" [formGroup]="artworkForm">
     <span class="button-group">
       <button mat-button (click)="cancelClicked()">Cancel <mat-icon class="button-icon">cancel</mat-icon></button>
-      <button mat-button class="save" [disabled]="isFormInvalid" (click)="saveClicked()">Save <mat-icon class="button-icon">save</mat-icon></button>
+      <catalart-button (onClick)="saveClicked()"
+                       [loading]="saving"
+                       [disabled]="isFormInvalid"
+                       [title]="'Save'"
+                       [positive]="true">
+        <mat-icon class="button-icon">save</mat-icon>
+      </catalart-button>
     </span>
     <catalart-section-container>
       <artwork-title-section [artworkTitleForm]="titleForm"></artwork-title-section>

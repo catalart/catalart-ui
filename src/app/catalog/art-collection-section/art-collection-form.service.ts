@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { ArtCollection } from './art-collection.model';
+import { Option } from 'src/app/common/models/option.model';
 
 @Injectable()
 export class ArtCollectionFormService implements IFormService<ArtCollection> {

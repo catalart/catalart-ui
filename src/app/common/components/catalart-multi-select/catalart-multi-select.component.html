@@ -1,0 +1,45 @@
+<ng-container *ngIf="!loading else loadingMask">
+  <div class="catalart-multi-select-container">
+    <div class="multi-select-container">
+      <ul class="left-side-container"
+           cdkDropList
+           #selectableList="cdkDropList"
+           cdkDropListSortingDisabled
+           [cdkDropListData]="leftSideOptions"
+           [cdkDropListConnectedTo]="[chosenList]"
+           (cdkDropListDropped)="drop($event)">
+        <li *ngFor="let item of leftSideOptions"
+            class="item"
+            (click)="stageInLeftList(item, $event)"
+            [class.selected]="itemInStagedLeftList(item)"
+            cdkDrag>
+            {{item.text}}
+        </li>
+      </ul>
+      <div class="middle-buttons">
+        <button mat-icon-button class="move-all-right" (click)="onMoveAllRight()"><mat-icon>last_page</mat-icon></button>
+        <button mat-icon-button class="move-selected-right" (click)="moveStagedRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+        <button mat-icon-button class="move-selected-left" (click)="moveStagedLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <button mat-icon-button class="move-all-left" (click)="onMoveAllLeft()"><mat-icon>first_page</mat-icon></button>
+      </div>
+      <ul class="right-side-container"
+           cdkDropList
+           #chosenList="cdkDropList"
+           cdkDropListSortingDisabled
+           [cdkDropListData]="rightSideOptions"
+           [cdkDropListConnectedTo]="[selectableList]"
+           (cdkDropListDropped)="drop($event)">
+        <li class="item"
+            *ngFor="let item of rightSideOptions"
+            (click)="stageInRightList(item, $event)"
+            [class.selected]="itemInStagedRightList(item)"
+            cdkDrag>
+            {{item.text}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loadingMask>
+  <loading-mask></loading-mask>
+</ng-template>
