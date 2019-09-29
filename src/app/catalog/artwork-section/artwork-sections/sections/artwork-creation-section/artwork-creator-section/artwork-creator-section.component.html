@@ -1,5 +1,6 @@
 <ng-container [formGroup]="artworkCreatorForm">
-  <catalart-switch formControlName="addNewArtist">
+  <catalart-switch formControlName="addNewArtist"
+                   [label]="'Add New Artist'">
   </catalart-switch>
   <ng-container *ngIf="addNewArtist.value else chooseArtist">
     <mat-form-field>

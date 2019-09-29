@@ -1,9 +1,9 @@
-<div class="switch-label">Label for switch</div>
+<div class="switch-label">{{label}}</div>
 <mat-button-toggle-group>
-  <mat-button-toggle (change)="value = false">
+  <mat-button-toggle [class.selected]="!isRightSideChosen" (change)="value = false">
     {{falseText}}
   </mat-button-toggle>
-  <mat-button-toggle (change)="value = true">
+  <mat-button-toggle [class.selected]="isRightSideChosen" (change)="value = true">
     {{trueText}}
   </mat-button-toggle>
 </mat-button-toggle-group>

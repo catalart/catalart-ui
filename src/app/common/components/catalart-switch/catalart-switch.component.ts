@@ -10,6 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class CatalartSwitchComponent implements ControlValueAccessor {
   @Input() trueText = 'Yes';
   @Input() falseText = 'No';
+  @Input() label = '';
 
   isRightSideChosen: boolean;
 

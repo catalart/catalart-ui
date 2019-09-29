@@ -6,7 +6,8 @@ import { MatDialog } from '@angular/material';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 import { ArtCollectionService } from '../art-collection.service';
 import { CatalartConfirmationDialogComponent } from 'src/app/common/components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
-import { takeUntil, finalize } from 'rxjs/operators';
+import { takeUntil, finalize, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'art-collection-list',
@@ -15,7 +16,9 @@ import { takeUntil, finalize } from 'rxjs/operators';
 })
 export class ArtCollectionListComponent implements OnInit, OnDestroy {
   artCollectionCatalog: ArtCollectionPreview[] = [];
+  searchableCatalog: ArtCollectionPreview[] = [];
   loading = false;
+  searchForm: FormGroup;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -23,11 +26,13 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
     private router: Router,
     private artCollectionService: ArtCollectionService,
     private sms: SnackbarMessagingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.getAllArtCollections();
+    this.setupSearch();
   }
 
   ngOnDestroy() {
@@ -72,6 +77,7 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
       .subscribe(
         artCollectionCatalog => {
           this.artCollectionCatalog = artCollectionCatalog;
+          this.searchableCatalog = [...this.artCollectionCatalog];
         },
         error => this.sms.displayError(error)
       );
@@ -88,5 +94,35 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
         },
         error => this.sms.displayError(error)
       );
+  }
+
+  private setupSearch() {
+    this.searchForm = this.fb.group({
+      searchInput: ''
+    });
+    this.searchForm.valueChanges
+      .pipe(
+        takeUntil(this.destroyed),
+        debounceTime(150),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        if (this.searchInput.value) {
+          this.filterCatalog(this.searchInput.value);
+        } else {
+          this.searchableCatalog = [...this.artCollectionCatalog];
+        }
+      });
+  }
+
+  private filterCatalog(searchInput: string) {
+    const searchTerm = searchInput.toLowerCase();
+    this.searchableCatalog = [...this.artCollectionCatalog].filter(artCollection =>
+      artCollection.name.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  get searchInput() {
+    return this.searchForm.get('searchInput');
   }
 }
