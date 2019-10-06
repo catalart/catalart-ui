@@ -9,9 +9,10 @@ import { MaterialModule } from 'src/app/material.module';
 import { CatalartCommonModule } from 'src/app/common/catalart-common.module';
 import { ArtistSectionsComponent } from './artist-sections.component';
 import { ArtistGeneralInformationSectionComponent } from './sections/artist-general-information-section/artist-general-information-section.component';
+import { ArtistArtworkSectionComponent } from './sections/artist-artwork-section/artist-artwork-section.component';
 
 @NgModule({
-  declarations: [ArtistSectionsComponent, ArtistGeneralInformationSectionComponent],
+  declarations: [ArtistSectionsComponent, ArtistGeneralInformationSectionComponent, ArtistArtworkSectionComponent],
   imports: [
     BrowserModule,
     RoutingModule,

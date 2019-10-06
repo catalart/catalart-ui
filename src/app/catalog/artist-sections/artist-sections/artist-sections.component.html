@@ -13,6 +13,7 @@
     <catalart-section-container>
       <artist-general-information-section [artistGeneralInformationForm]="generalInformationForm">
       </artist-general-information-section>
+      <artist-artwork-section *ngIf="!addMode" [artist]="artist"></artist-artwork-section>
     </catalart-section-container>
   </span>
 </ng-container>

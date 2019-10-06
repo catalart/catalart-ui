@@ -15,12 +15,6 @@ export class ArtistService {
     return this.http.get<ArtistPreview[]>(`${environment.API_URL}/artists`);
   }
 
-  getAllArtistsAsOptions(): Observable<Option[]> {
-    return this.http
-      .get<ArtistPreview[]>(`${environment.API_URL}/artists`)
-      .pipe(map(result => result.map(r => new Option(r.id, r.name))));
-  }
-
   getArtistById(id: number): Observable<Artist> {
     return this.http.get<Artist>(`${environment.API_URL}/artists/${id}`);
   }

@@ -9,12 +9,12 @@ import { Artist } from 'src/app/catalog/artist-sections/artist.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ArtistService {
+export class ArtistReferenceService {
   constructor(private http: HttpClient) {}
 
   getAllArtists(): Observable<Enumeration[]> {
     return this.http
-      .get<Artist[]>(`${environment.API_URL}/artists`)
+      .get<Artist[]>(`${environment.API_URL}/reference/artists`)
       .pipe(map(results => results.map(r => new Enumeration(r.id, r.identity))));
   }
 }

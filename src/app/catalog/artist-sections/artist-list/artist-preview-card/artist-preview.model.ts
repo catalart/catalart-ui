@@ -1,5 +1,5 @@
 export class ArtistPreview {
   id: number;
-  name: string;
+  identity: string;
   preview: string;
 }

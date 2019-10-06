@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { Artist } from '../artist.model';
 
 @Component({
   selector: 'artist-sections',
@@ -11,6 +12,8 @@ export class ArtistSectionsComponent {
   @Input() artistForm: FormGroup;
   @Input() loading: boolean;
   @Input() saving: boolean;
+  @Input() addMode: boolean;
+  @Input() artist: Artist;
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router) {}

@@ -118,7 +118,7 @@ export class ArtistListComponent implements OnInit, OnDestroy {
 
   private filterCatalog(searchInput: string) {
     const searchTerm = searchInput.toLowerCase();
-    this.searchableCatalog = [...this.artistCatalog].filter(art => art.name.toLowerCase().includes(searchTerm));
+    this.searchableCatalog = [...this.artistCatalog].filter(art => art.identity.toLowerCase().includes(searchTerm));
   }
 
   get searchInput() {
