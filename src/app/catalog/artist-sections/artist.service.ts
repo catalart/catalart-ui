@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ArtistPreview } from './artist-list/artist-preview-card/artist-preview.model';
-import { map } from 'rxjs/operators';
-import { Option } from 'src/app/common/models/option.model';
 import { Artist } from './artist.model';
 
 @Injectable()

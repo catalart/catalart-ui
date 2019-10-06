@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 import { Artwork, Creator } from './artwork.model';
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { Enumeration } from 'src/app/common/models/enumeration.model';
+import { CustomValidators } from 'src/app/common/forms/custom-validators';
 
 @Injectable()
 export class ArtworkFormService implements IFormService<Artwork> {
@@ -77,7 +78,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
 
   private buildVisualDocumentationSection(artwork: Artwork): FormGroup {
     return this.fb.group({
-      preview: artwork.preview
+      preview: [artwork.preview, [CustomValidators.validUrl]]
     });
   }
 

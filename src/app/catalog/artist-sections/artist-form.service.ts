@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { Artist } from './artist.model';
+import { CustomValidators } from 'src/app/common/forms/custom-validators';
 
 @Injectable()
 export class ArtistFormService implements IFormService<Artist> {
@@ -24,9 +25,9 @@ export class ArtistFormService implements IFormService<Artist> {
 
   private buildGeneralInformationSection(artist: Artist): FormGroup {
     return this.fb.group({
-      identity: [artist.identity, Validators.required],
-      role: [artist.role, Validators.required],
-      preview: [artist.preview, Validators.required]
+      identity: [artist.identity, [Validators.required]],
+      role: [artist.role, [Validators.required]],
+      preview: [artist.preview, [Validators.required, CustomValidators.validUrl]]
     });
   }
 
