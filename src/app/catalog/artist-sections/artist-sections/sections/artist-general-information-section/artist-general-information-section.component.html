@@ -1,0 +1,22 @@
+<ng-container [formGroup]="artistGeneralInformationForm">
+  <catalart-section [title]="'General Information'"
+                    [description]="'General information about the artist'"
+                    [invalid]="artistGeneralInformationForm.invalid"
+                    [icon]="'layers'">
+    <mat-form-field>
+      <input matInput
+             placeholder="Identity"
+             formControlName="identity">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             placeholder="Role"
+             formControlName="role">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             placeholder="Preview"
+             formControlName="preview">
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

@@ -1,0 +1,19 @@
+<!--Part infinite list, with search, filter, with cards including Name of piece, picture, year, artist-->
+<span class="search-bar">
+  <mat-form-field class="search" [formGroup]="searchForm">
+    <input type="text"
+           placeholder="Search"
+           matInput
+           formControlName="searchInput">
+  </mat-form-field>
+  <span class="button-group">
+    <button mat-fab color="primary" aria-label="Add new artist" (click)="addClicked()"><mat-icon>add</mat-icon></button>
+  </span>
+</span>
+<catalart-section-container>
+  <artist-preview-card *ngFor="let artistPreview of searchableCatalog"
+                        [artistPreview]="artistPreview"
+                        (onViewClicked)="onViewClicked(artistPreview)"
+                        (onEditClicked)="onEditClicked(artistPreview)"
+                        (onDeleteClicked)="onDeleteClicked(artistPreview)"></artist-preview-card>
+</catalart-section-container>

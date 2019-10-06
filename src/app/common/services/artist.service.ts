@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Enumeration } from '../models/enumeration.model';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Artist } from '../models/artist.model';
+import { Artist } from 'src/app/catalog/artist-sections/artist.model';
 
 @Injectable({
   providedIn: 'root'
