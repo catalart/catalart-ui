@@ -9,8 +9,8 @@ import { Artist } from './artist.model';
 export class ArtistService {
   constructor(private http: HttpClient) {}
 
-  getAllArtists(): Observable<ArtistPreview[]> {
-    return this.http.get<ArtistPreview[]>(`${environment.API_URL}/artists`);
+  getAllArtists(filter: string = ''): Observable<ArtistPreview[]> {
+    return this.http.get<ArtistPreview[]>(`${environment.API_URL}/artists?filter=${filter}`);
   }
 
   getArtistById(id: number): Observable<Artist> {

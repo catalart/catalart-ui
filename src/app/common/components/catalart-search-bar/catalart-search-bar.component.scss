@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: row;
+
+  catalart-search {
+    flex: 1;
+    margin-left: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+  }
+}

@@ -17,9 +17,7 @@ import { CatalartConfirmationDialogComponent } from 'src/app/common/components/c
 })
 export class ArtistListComponent implements OnInit, OnDestroy {
   artistCatalog: ArtistPreview[] = [];
-  searchableCatalog: ArtistPreview[] = [];
   loading = false;
-  searchForm: FormGroup;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -33,7 +31,6 @@ export class ArtistListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getAllArtists();
-    this.setupSearch();
   }
 
   ngOnDestroy() {
@@ -67,10 +64,14 @@ export class ArtistListComponent implements OnInit, OnDestroy {
       });
   }
 
-  private getAllArtists() {
+  filter(filter: string) {
+    this.getAllArtists(filter);
+  }
+
+  private getAllArtists(filter?: string) {
     this.loading = true;
     this.artistService
-      .getAllArtists()
+      .getAllArtists(filter)
       .pipe(
         takeUntil(this.destroyed),
         finalize(() => (this.loading = false))
@@ -78,7 +79,6 @@ export class ArtistListComponent implements OnInit, OnDestroy {
       .subscribe(
         artwork => {
           this.artistCatalog = artwork;
-          this.searchableCatalog = [...this.artistCatalog];
         },
         error => this.sms.displayError(error)
       );
@@ -95,33 +95,5 @@ export class ArtistListComponent implements OnInit, OnDestroy {
         },
         error => this.sms.displayError(error)
       );
-  }
-
-  private setupSearch() {
-    this.searchForm = this.fb.group({
-      searchInput: ''
-    });
-    this.searchForm.valueChanges
-      .pipe(
-        takeUntil(this.destroyed),
-        debounceTime(150),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        if (this.searchInput.value) {
-          this.filterCatalog(this.searchInput.value);
-        } else {
-          this.searchableCatalog = [...this.artistCatalog];
-        }
-      });
-  }
-
-  private filterCatalog(searchInput: string) {
-    const searchTerm = searchInput.toLowerCase();
-    this.searchableCatalog = [...this.artistCatalog].filter(art => art.identity.toLowerCase().includes(searchTerm));
-  }
-
-  get searchInput() {
-    return this.searchForm.get('searchInput');
   }
 }

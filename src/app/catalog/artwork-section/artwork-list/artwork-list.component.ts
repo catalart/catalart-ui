@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, finalize, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { takeUntil, finalize } from 'rxjs/operators';
 
 import { ArtworkService } from '../artwork.service';
 import { ArtworkPreview } from './artwork-preview-card/artwork-preview.model';
@@ -17,9 +16,7 @@ import { CatalartConfirmationDialogComponent } from 'src/app/common/components/c
 })
 export class ArtworkListComponent implements OnInit, OnDestroy {
   artCatalog: ArtworkPreview[] = [];
-  searchableCatalog: ArtworkPreview[] = [];
   loading = false;
-  searchForm: FormGroup;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -27,13 +24,11 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
     private router: Router,
     private artworkService: ArtworkService,
     private sms: SnackbarMessagingService,
-    private dialog: MatDialog,
-    private fb: FormBuilder
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.getAllArtwork();
-    this.setupSearch();
   }
 
   ngOnDestroy() {
@@ -67,10 +62,14 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
       });
   }
 
-  private getAllArtwork() {
+  filter(filter: string) {
+    this.getAllArtwork(filter);
+  }
+
+  private getAllArtwork(filter?: string) {
     this.loading = true;
     this.artworkService
-      .getAllArtwork()
+      .getAllArtwork(filter)
       .pipe(
         takeUntil(this.destroyed),
         finalize(() => (this.loading = false))
@@ -78,7 +77,6 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
       .subscribe(
         artwork => {
           this.artCatalog = artwork;
-          this.searchableCatalog = [...this.artCatalog];
         },
         error => this.sms.displayError(error)
       );
@@ -95,33 +93,5 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
         },
         error => this.sms.displayError(error)
       );
-  }
-
-  private setupSearch() {
-    this.searchForm = this.fb.group({
-      searchInput: ''
-    });
-    this.searchForm.valueChanges
-      .pipe(
-        takeUntil(this.destroyed),
-        debounceTime(150),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        if (this.searchInput.value) {
-          this.filterCatalog(this.searchInput.value);
-        } else {
-          this.searchableCatalog = [...this.artCatalog];
-        }
-      });
-  }
-
-  private filterCatalog(searchInput: string) {
-    const searchTerm = searchInput.toLowerCase();
-    this.searchableCatalog = [...this.artCatalog].filter(art => art.title.toLowerCase().includes(searchTerm));
-  }
-
-  get searchInput() {
-    return this.searchForm.get('searchInput');
   }
 }

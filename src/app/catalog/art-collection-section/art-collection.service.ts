@@ -12,8 +12,10 @@ import { ArtCollection } from './art-collection.model';
 export class ArtCollectionService {
   constructor(private http: HttpClient) {}
 
-  getAllArtCollections(): Observable<ArtCollectionPreview[]> {
-    return this.http.get(`${environment.API_URL}/art-collection`).pipe(map(result => result as ArtCollectionPreview[]));
+  getAllArtCollections(filter?: string): Observable<ArtCollectionPreview[]> {
+    return this.http
+      .get(`${environment.API_URL}/art-collection?filter=${filter}`)
+      .pipe(map(result => result as ArtCollectionPreview[]));
   }
 
   getArtCollectionById(id: number): Observable<ArtCollection> {

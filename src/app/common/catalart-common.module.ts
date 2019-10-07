@@ -13,6 +13,8 @@ import { CatalartSwitchComponent } from './components/catalart-switch/catalart-s
 import { CatalartConfirmationDialogComponent } from './components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
 import { CatalartMultiSelectComponent } from './components/catalart-multi-select/catalart-multi-select.component';
 import { CatalartButtonComponent } from './components/catalart-button/catalart-button.component';
+import { CatalartSearchComponent } from './components/catalart-search/catalart-search.component';
+import { CatalartSearchBarComponent } from './components/catalart-search-bar/catalart-search-bar.component';
 
 @NgModule({
   imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule],
@@ -26,7 +28,9 @@ import { CatalartButtonComponent } from './components/catalart-button/catalart-b
     CatalartSwitchComponent,
     CatalartConfirmationDialogComponent,
     CatalartMultiSelectComponent,
-    CatalartButtonComponent
+    CatalartButtonComponent,
+    CatalartSearchComponent,
+    CatalartSearchBarComponent
   ],
   exports: [
     CatalartSectionComponent,
@@ -37,7 +41,9 @@ import { CatalartButtonComponent } from './components/catalart-button/catalart-b
     CatalartSwitchComponent,
     CatalartConfirmationDialogComponent,
     CatalartMultiSelectComponent,
-    CatalartButtonComponent
+    CatalartButtonComponent,
+    CatalartSearchComponent,
+    CatalartSearchBarComponent
   ]
 })
 export class CatalartCommonModule {}
