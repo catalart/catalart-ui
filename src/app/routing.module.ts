@@ -11,6 +11,10 @@ import { ArtCollectionSectionComponent } from './catalog/art-collection-section/
 import { ArtCollectionListComponent } from './catalog/art-collection-section/art-collection-list/art-collection-list.component';
 import { ArtCollectionEditComponent } from './catalog/art-collection-section/art-collection-edit/art-collection-edit.component';
 import { ArtCollectionAddComponent } from './catalog/art-collection-section/art-collection-add/art-collection-add.component';
+import { ArtistListComponent } from './catalog/artist-sections/artist-list/artist-list.component';
+import { ArtistSectionComponent } from './catalog/artist-sections/artist-section.component';
+import { ArtistEditComponent } from './catalog/artist-sections/artist-edit/artist-edit.component';
+import { ArtistAddComponent } from './catalog/artist-sections/artist-add/artist-add.component';
 
 const routes: Routes = [
   {
@@ -64,6 +68,29 @@ const routes: Routes = [
       {
         path: 'add',
         component: ArtworkAddComponent
+      }
+    ]
+  },
+  {
+    path: 'artists',
+    component: ArtistSectionComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'list'
+      },
+      {
+        path: 'list',
+        component: ArtistListComponent
+      },
+      {
+        path: 'edit/:id',
+        component: ArtistEditComponent
+      },
+      {
+        path: 'add',
+        component: ArtistAddComponent
       }
     ]
   }

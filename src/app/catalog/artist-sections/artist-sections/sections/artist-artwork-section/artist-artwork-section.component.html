@@ -1,0 +1,10 @@
+<catalart-section [title]="'Artwork'"
+                  [description]="'All art by the artist'"
+                  [icon]="'format_paint'">
+  <mat-list>
+    <h3 mat-header>Artwork</h3>
+    <mat-list-item *ngFor="let item of artwork">
+      <h5 mat-line>{{item.text}}</h5>
+    </mat-list-item>
+  </mat-list>
+</catalart-section>

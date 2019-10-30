@@ -11,8 +11,8 @@ import { Option } from 'src/app/common/models/option.model';
 export class ArtworkService {
   constructor(private http: HttpClient) {}
 
-  getAllArtwork(): Observable<ArtworkPreview[]> {
-    return this.http.get<ArtworkPreview[]>(`${environment.API_URL}/artwork`);
+  getAllArtwork(filter?: string): Observable<ArtworkPreview[]> {
+    return this.http.get<ArtworkPreview[]>(`${environment.API_URL}/artwork?filter=${filter}`);
   }
 
   getAllArtworkAsOptions(): Observable<Option[]> {

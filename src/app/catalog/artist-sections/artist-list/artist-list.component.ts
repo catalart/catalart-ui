@@ -1,34 +1,36 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, finalize } from 'rxjs/operators';
+import { takeUntil, finalize, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
-import { ArtworkService } from '../artwork.service';
-import { ArtworkPreview } from './artwork-preview-card/artwork-preview.model';
+import { ArtistService } from '../artist.service';
+import { ArtistPreview } from './artist-preview-card/artist-preview.model';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 import { CatalartConfirmationDialogComponent } from 'src/app/common/components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
 
 @Component({
-  selector: 'artwork-list',
-  templateUrl: './artwork-list.component.html',
-  styleUrls: ['./artwork-list.component.scss']
+  selector: 'artist-list',
+  templateUrl: './artist-list.component.html',
+  styleUrls: ['./artist-list.component.scss']
 })
-export class ArtworkListComponent implements OnInit, OnDestroy {
-  artCatalog: ArtworkPreview[] = [];
+export class ArtistListComponent implements OnInit, OnDestroy {
+  artistCatalog: ArtistPreview[] = [];
   loading = false;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private router: Router,
-    private artworkService: ArtworkService,
+    private artistService: ArtistService,
     private sms: SnackbarMessagingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.getAllArtwork();
+    this.getAllArtists();
   }
 
   ngOnDestroy() {
@@ -36,19 +38,19 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
     this.destroyed.complete();
   }
 
-  onViewClicked(artworkPreview: ArtworkPreview) {
-    this.router.navigateByUrl(`artwork/view/${artworkPreview.id}`);
+  onViewClicked(artistPreview: ArtistPreview) {
+    this.router.navigateByUrl(`artists/view/${artistPreview.id}`);
   }
 
-  onEditClicked(artworkPreview: ArtworkPreview) {
-    this.router.navigateByUrl(`artwork/edit/${artworkPreview.id}`);
+  onEditClicked(artistPreview: ArtistPreview) {
+    this.router.navigateByUrl(`artists/edit/${artistPreview.id}`);
   }
 
   addClicked() {
-    this.router.navigateByUrl('artwork/add');
+    this.router.navigateByUrl('artists/add');
   }
 
-  onDeleteClicked(artworkPreview: ArtworkPreview) {
+  onDeleteClicked(artistPreview: ArtistPreview) {
     this.dialog
       .open(CatalartConfirmationDialogComponent, {
         width: '300px'
@@ -57,39 +59,39 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed))
       .subscribe(wasConfirmed => {
         if (wasConfirmed) {
-          this.deleteArtwork(artworkPreview.id);
+          this.deleteArtist(artistPreview.id);
         }
       });
   }
 
   filter(filter: string) {
-    this.getAllArtwork(filter);
+    this.getAllArtists(filter);
   }
 
-  private getAllArtwork(filter?: string) {
+  private getAllArtists(filter?: string) {
     this.loading = true;
-    this.artworkService
-      .getAllArtwork(filter)
+    this.artistService
+      .getAllArtists(filter)
       .pipe(
         takeUntil(this.destroyed),
         finalize(() => (this.loading = false))
       )
       .subscribe(
         artwork => {
-          this.artCatalog = artwork;
+          this.artistCatalog = artwork;
         },
         error => this.sms.displayError(error)
       );
   }
 
-  private deleteArtwork(artworkId: number) {
-    this.artworkService
-      .deleteArtwork(artworkId)
+  private deleteArtist(artistId: number) {
+    this.artistService
+      .deleteArtist(artistId)
       .pipe(takeUntil(this.destroyed))
       .subscribe(
         () => {
-          this.sms.displaySuccess('Artwork successfully deleted');
-          this.getAllArtwork();
+          this.sms.displaySuccess('Artist successfully deleted');
+          this.getAllArtists();
         },
         error => this.sms.displayError(error)
       );

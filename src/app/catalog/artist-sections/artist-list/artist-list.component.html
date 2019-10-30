@@ -1,0 +1,11 @@
+<catalart-search-bar (onSearch)="filter($event)"
+                     (onAdd)="addClicked()"
+                     ariaLabel="Add new artist">
+</catalart-search-bar>
+<catalart-section-container>
+  <artist-preview-card *ngFor="let artistPreview of artistCatalog"
+                        [artistPreview]="artistPreview"
+                        (onViewClicked)="onViewClicked(artistPreview)"
+                        (onEditClicked)="onEditClicked(artistPreview)"
+                        (onDeleteClicked)="onDeleteClicked(artistPreview)"></artist-preview-card>
+</catalart-section-container>

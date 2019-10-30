@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { ArtistService } from 'src/app/common/services/artist.service';
+import { ArtistReferenceService } from 'src/app/common/services/artist-reference.service';
 import { Enumeration } from 'src/app/common/models/enumeration.model';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
@@ -19,7 +19,7 @@ export class ArtworkCreatorSectionComponent implements OnInit, OnDestroy {
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private artistService: ArtistService, private sms: SnackbarMessagingService) {}
+  constructor(private artistService: ArtistReferenceService, private sms: SnackbarMessagingService) {}
 
   ngOnInit() {
     this.artistsLoading = true;

@@ -1,0 +1,39 @@
+.card {
+  width: 250px;
+  height: 350px;
+  margin: 0px 0px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+img {
+  object-fit: cover;
+  height: 250px;
+  margin-top: 10px;
+}
+
+#preview-title {
+  font-size: 16px;
+}
+
+.content {
+  flex: 1 1 auto;
+}
+
+mat-card-header {
+  margin-bottom: 10px;
+}
+
+mat-icon.default-icon {
+  font-size: 175px;
+  margin-left: 35px;
+}
+
+.action-icon {
+  margin-left: 5px;
+
+  mat-icon {
+    line-height: 21px;
+  }
+}
