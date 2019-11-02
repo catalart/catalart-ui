@@ -30,6 +30,7 @@ export class CatalartSearchComponent implements OnInit {
 
   clear() {
     this.searchInput.patchValue('');
+    this.searchInput.markAsDirty();
     this.filter();
   }
 

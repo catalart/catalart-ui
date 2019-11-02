@@ -1,13 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, finalize } from 'rxjs/operators';
 
 import { ArtworkService } from '../artwork.service';
-import { ArtworkPreview } from './artwork-preview-card/artwork-preview.model';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 import { CatalartConfirmationDialogComponent } from 'src/app/common/components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
+
+import { ArtworkPreview } from './artwork-preview-card/artwork-preview.model';
+import { Query } from 'src/app/common/models/query.model';
 
 @Component({
   selector: 'artwork-list',
@@ -17,6 +19,9 @@ import { CatalartConfirmationDialogComponent } from 'src/app/common/components/c
 export class ArtworkListComponent implements OnInit, OnDestroy {
   artCatalog: ArtworkPreview[] = [];
   loading = false;
+  length = 100;
+  pageSizeOptions: number[] = [10, 25, 50, 100];
+  query: Query;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -28,6 +33,7 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.setQueryOptions();
     this.getAllArtwork();
   }
 
@@ -63,13 +69,20 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
   }
 
   filter(filter: string) {
-    this.getAllArtwork(filter);
+    this.query.filter = filter;
+    this.query.offset = 0;
+    this.getAllArtwork();
   }
 
-  private getAllArtwork(filter?: string) {
+  updatePaginationOptions(pageEvent: PageEvent) {
+    this.query.updateGivenPageEvent(pageEvent);
+    this.getAllArtwork();
+  }
+
+  private getAllArtwork() {
     this.loading = true;
     this.artworkService
-      .getAllArtwork(filter)
+      .getAllArtwork(this.query)
       .pipe(
         takeUntil(this.destroyed),
         finalize(() => (this.loading = false))
@@ -93,5 +106,9 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
         },
         error => this.sms.displayError(error)
       );
+  }
+
+  private setQueryOptions() {
+    this.query = Query.fromPaginationParameters('', 1, 10);
   }
 }

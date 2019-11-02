@@ -3,29 +3,15 @@
   flex-direction: column;
   height: 100%;
 
-  .search-bar {
-    display: flex;
-    flex-direction: row;
-
-    mat-form-field {
-      flex: 1;
-      margin-left: 15px;
-    }
-
-    .button-group {
-      display: flex;
-      justify-content: flex-end;
-      margin: 10px;
-    }
-  }
-
   catalart-section-container {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
   }
 
-  .search {
-    margin-top: 5px;
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
 }

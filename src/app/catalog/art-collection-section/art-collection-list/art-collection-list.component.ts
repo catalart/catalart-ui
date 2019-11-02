@@ -2,12 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArtCollectionPreview } from './art-collection-preview-card/art-collection-preview.model';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 import { ArtCollectionService } from '../art-collection.service';
 import { CatalartConfirmationDialogComponent } from 'src/app/common/components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
-import { takeUntil, finalize, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { takeUntil, finalize } from 'rxjs/operators';
+import { Query } from 'src/app/common/models/query.model';
 
 @Component({
   selector: 'art-collection-list',
@@ -17,7 +17,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ArtCollectionListComponent implements OnInit, OnDestroy {
   artCollectionCatalog: ArtCollectionPreview[] = [];
   loading = false;
-  searchForm: FormGroup;
+  length = 100;
+  pageSizeOptions: number[] = [10, 25, 50, 100];
+  query: Query;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
@@ -29,6 +31,7 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.setQueryOptions();
     this.getAllArtCollections();
   }
 
@@ -64,13 +67,20 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
   }
 
   filter(filter: string) {
-    this.getAllArtCollections(filter);
+    this.query.filter = filter;
+    this.query.offset = 0;
+    this.getAllArtCollections();
   }
 
-  private getAllArtCollections(filter?: string) {
+  updatePaginationOptions(pageEvent: PageEvent) {
+    this.query.updateGivenPageEvent(pageEvent);
+    this.getAllArtCollections();
+  }
+
+  private getAllArtCollections() {
     this.loading = true;
     this.artCollectionService
-      .getAllArtCollections(filter)
+      .getAllArtCollections(this.query)
       .pipe(
         takeUntil(this.destroyed),
         finalize(() => (this.loading = false))
@@ -94,5 +104,9 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
         },
         error => this.sms.displayError(error)
       );
+  }
+
+  private setQueryOptions() {
+    this.query = Query.fromPaginationParameters('', 1, 10);
   }
 }

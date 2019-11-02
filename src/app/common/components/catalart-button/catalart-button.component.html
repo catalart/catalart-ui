@@ -1,7 +1,8 @@
 <button mat-button
         (click)="onClick.emit()"
         [disabled]="disabled"
-        [class.positive]="positive">{{title}}
+        [class.positive]="positive"
+        [class.loading]="loading">{{title}}
   <ng-content *ngIf="!loading else loadingMask"></ng-content>
   <ng-template #loadingMask>
     <mat-spinner [diameter]="18"></mat-spinner>
