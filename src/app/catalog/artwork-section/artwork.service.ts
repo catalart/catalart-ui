@@ -6,13 +6,15 @@ import { environment } from 'src/environments/environment';
 import { ArtworkPreview } from './artwork-list/artwork-preview-card/artwork-preview.model';
 import { map } from 'rxjs/operators';
 import { Option } from 'src/app/common/models/option.model';
+import { Query } from 'src/app/common/models/query.model';
+import { ListResponse } from 'src/app/common/models/response.model';
 
 @Injectable()
 export class ArtworkService {
   constructor(private http: HttpClient) {}
 
-  getAllArtwork(filter?: string): Observable<ArtworkPreview[]> {
-    return this.http.get<ArtworkPreview[]>(`${environment.API_URL}/artwork?filter=${filter}`);
+  getAllArtwork(query: Query): Observable<ListResponse<ArtworkPreview>> {
+    return this.http.get<ListResponse<ArtworkPreview>>(`${environment.API_URL}/artwork?${query.toUrlParams()}`);
   }
 
   getAllArtworkAsOptions(): Observable<Option[]> {

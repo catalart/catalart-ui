@@ -8,4 +8,11 @@
                         (onViewClicked)="onViewClicked(artworkPreview)"
                         (onEditClicked)="onEditClicked(artworkPreview)"
                         (onDeleteClicked)="onDeleteClicked(artworkPreview)"></artwork-preview-card>
+  <mat-paginator class="footer"
+                 [length]="totalResults"
+                 [pageSize]="query.pageSize"
+                 [pageIndex]="query.pageIndex"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="updatePaginationOptions($event)">
+  </mat-paginator>
 </catalart-section-container>
