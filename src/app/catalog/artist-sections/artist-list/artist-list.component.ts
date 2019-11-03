@@ -19,7 +19,7 @@ import { Query } from 'src/app/common/models/query.model';
 export class ArtistListComponent implements OnInit, OnDestroy {
   artistCatalog: ArtistPreview[] = [];
   loading = false;
-  length = 100;
+  totalResults: number;
   pageSizeOptions: number[] = [10, 25, 50, 100];
   query: Query;
 
@@ -88,8 +88,9 @@ export class ArtistListComponent implements OnInit, OnDestroy {
         finalize(() => (this.loading = false))
       )
       .subscribe(
-        artists => {
-          this.artistCatalog = artists;
+        result => {
+          this.artistCatalog = result.results;
+          this.totalResults = result.totalNumberOfResults;
         },
         error => this.sms.displayError(error)
       );

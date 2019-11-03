@@ -10,9 +10,10 @@ import { CatalogModule } from './catalog/catalog.module';
 import { CatalartCommonModule } from './common/catalart-common.module';
 import { ComplexSearchModule } from './complex-search/complex-search.module';
 
-import { ResponseInterceptor } from './interceptors/response.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 import { AppComponent } from './app.component';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,11 @@ import { AppComponent } from './app.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],

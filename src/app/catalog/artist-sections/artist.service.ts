@@ -5,13 +5,14 @@ import { environment } from 'src/environments/environment';
 import { ArtistPreview } from './artist-list/artist-preview-card/artist-preview.model';
 import { Artist } from './artist.model';
 import { Query } from 'src/app/common/models/query.model';
+import { ListResponse } from 'src/app/common/models/response.model';
 
 @Injectable()
 export class ArtistService {
   constructor(private http: HttpClient) {}
 
-  getAllArtists(query: Query): Observable<ArtistPreview[]> {
-    return this.http.get<ArtistPreview[]>(`${environment.API_URL}/artists?${query.toUrlParams()}`);
+  getAllArtists(query: Query): Observable<ListResponse<ArtistPreview>> {
+    return this.http.get<ListResponse<ArtistPreview>>(`${environment.API_URL}/artists?${query.toUrlParams()}`);
   }
 
   getArtistById(id: number): Observable<Artist> {

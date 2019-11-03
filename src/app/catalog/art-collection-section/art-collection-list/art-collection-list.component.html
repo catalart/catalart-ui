@@ -9,7 +9,7 @@
                                (onEditClicked)="onEditClicked(artCollectionPreview)"
                                (onDeleteClicked)="onDeleteClicked(artCollectionPreview)"></art-collection-preview-card>
   <mat-paginator class="footer"
-                  [length]="length"
+                  [length]="totalResults"
                   [pageSize]="query.pageSize"
                   [pageIndex]="query.pageIndex"
                   [pageSizeOptions]="pageSizeOptions"

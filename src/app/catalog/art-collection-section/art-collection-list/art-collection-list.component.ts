@@ -17,7 +17,7 @@ import { Query } from 'src/app/common/models/query.model';
 export class ArtCollectionListComponent implements OnInit, OnDestroy {
   artCollectionCatalog: ArtCollectionPreview[] = [];
   loading = false;
-  length = 100;
+  totalResults = 100;
   pageSizeOptions: number[] = [10, 25, 50, 100];
   query: Query;
 
@@ -86,8 +86,9 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
         finalize(() => (this.loading = false))
       )
       .subscribe(
-        artCollectionCatalog => {
-          this.artCollectionCatalog = artCollectionCatalog;
+        res => {
+          this.artCollectionCatalog = res.results;
+          this.totalResults = res.totalNumberOfResults;
         },
         error => this.sms.displayError(error)
       );

@@ -19,7 +19,7 @@ import { Query } from 'src/app/common/models/query.model';
 export class ArtworkListComponent implements OnInit, OnDestroy {
   artCatalog: ArtworkPreview[] = [];
   loading = false;
-  length = 100;
+  totalResults = 100;
   pageSizeOptions: number[] = [10, 25, 50, 100];
   query: Query;
 
@@ -88,8 +88,9 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
         finalize(() => (this.loading = false))
       )
       .subscribe(
-        artwork => {
-          this.artCatalog = artwork;
+        res => {
+          this.artCatalog = res.results;
+          this.totalResults = res.totalNumberOfResults;
         },
         error => this.sms.displayError(error)
       );
