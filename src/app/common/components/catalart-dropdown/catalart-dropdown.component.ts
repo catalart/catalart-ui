@@ -14,6 +14,7 @@ export class CatalartDropdownComponent implements ControlValueAccessor, OnInit, 
   @Input() options: Enumeration[] = [];
   @Input() placeholderText: string;
   @Input() loading: boolean;
+  @Input() required: boolean;
 
   form: FormGroup;
   private destroyed: Subject<boolean> = new Subject<boolean>();
