@@ -6,4 +6,23 @@ A simple application to catalog art using the Getty CDWA standards. Read more ab
 
 - Fix cascade delete for tags
 - Add loading icon for dropdown
-- Add loading icon for save/add
+- Create common list component
+- Decide how to implement complex search (elastic search?)
+- Import/export artwork/art-collection
+
+# Features
+
+- Fully implement Getty standards
+- Create a way to upload articles
+- Associate articles with artwork
+- Create a date component that allows a user to enter multiple types of dates
+- Create a measurement component that allows a user to add measurements in multiple ways
+- Validate a citation (allow for different types of citations)
+- Types of art collections
+- Security
+- Login/Logout
+- Manage users
+
+# Tech Debt
+
+- UI/Api Unit testing...
