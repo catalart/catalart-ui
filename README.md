@@ -5,7 +5,7 @@ A simple application to catalog art using the Getty CDWA standards. Read more ab
 # Todo (V1)
 
 - Fix cascade delete for tags
-- Add loading icon for dropdown
+- Fix tags when creating artwork
 - Create common list component
 - Decide how to implement complex search (elastic search?)
 - Import/export artwork/art-collection

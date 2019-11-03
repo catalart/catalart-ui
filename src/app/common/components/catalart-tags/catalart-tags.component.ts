@@ -5,6 +5,7 @@ import { SnackbarMessagingService } from '../../services/snackbar-messaging.serv
 @Component({
   selector: 'catalart-tags',
   templateUrl: './catalart-tags.component.html',
+  styleUrls: ['./catalart-tags.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: CatalartTagsComponent, multi: true }]
 })
 export class CatalartTagsComponent implements ControlValueAccessor {

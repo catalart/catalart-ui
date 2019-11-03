@@ -44,12 +44,38 @@ export class ArtworkFormService implements IFormService<Artwork> {
   }
 
   private buildCreatorForm(creator: Creator): FormGroup {
-    return this.fb.group({
+    const form = this.fb.group({
       addNewArtist: false,
       creator: new Enumeration(creator.id, creator.identity),
       identity: creator.identity,
       role: creator.role
     });
+    this.watchAddArtistSwitch(form);
+    return form;
+  }
+
+  private watchAddArtistSwitch(form: FormGroup) {
+    const addNewArtistControl = form.get('addNewArtist');
+    const creatorControl = form.get('creator');
+    const identityControl = form.get('identity');
+    const roleControl = form.get('role');
+
+    addNewArtistControl.valueChanges.subscribe(value => {
+      if (!!value) {
+        creatorControl.setValidators(null);
+        identityControl.setValidators([Validators.required]);
+        roleControl.setValidators([Validators.required]);
+      } else {
+        creatorControl.setValidators([Validators.required]);
+        identityControl.setValidators(null);
+        roleControl.setValidators(null);
+      }
+      creatorControl.updateValueAndValidity();
+      identityControl.updateValueAndValidity();
+      roleControl.updateValueAndValidity();
+    });
+
+    addNewArtistControl.updateValueAndValidity();
   }
 
   private buildMeasurementsSection(artwork: Artwork): FormGroup {
