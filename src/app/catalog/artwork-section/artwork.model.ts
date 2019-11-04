@@ -1,3 +1,5 @@
+import { Option } from 'src/app/common/models/option.model';
+
 export class Creator {
   id: number;
   identity: string;
@@ -11,7 +13,7 @@ export class CreationDate {
 
 export class Artwork {
   id: number;
-  classificationTerm: string;
+  classificationTerm: Option;
   title: string;
   creator: Creator = new Creator();
   creationDate: CreationDate = new CreationDate();

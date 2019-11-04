@@ -8,7 +8,8 @@ import { ArtworkReferenceService } from 'src/app/common/services/artwork-referen
 
 @Component({
   selector: 'artist-artwork-section',
-  templateUrl: './artist-artwork-section.component.html'
+  templateUrl: './artist-artwork-section.component.html',
+  styleUrls: ['./artist-artwork-section.component.scss']
 })
 export class ArtistArtworkSectionComponent implements OnInit {
   @Input() artist: Artist;

@@ -3,11 +3,11 @@
                     [description]="'Placement of a work of art or architecture within a classification scheme.'"
                     [invalid]="artworkClassificationForm.invalid"
                     [icon]="'category'">
-    <mat-form-field>
-      <input matInput
-             placeholder="Classification Term"
-             formControlName="classificationTerm"
-             required>
-    </mat-form-field>
+    <catalart-dropdown formControlName="classificationTerm"
+                        [options]="classificationTermOptions"
+                        [loading]="termsLoading"
+                        [placeholderText]="'Classification Term'"
+                        [required]="true">
+    </catalart-dropdown>
   </catalart-section>
 </ng-container>

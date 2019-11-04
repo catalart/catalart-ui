@@ -9,6 +9,7 @@ A simple application to catalog art using the Getty CDWA standards. Read more ab
 - Create common list component
 - Decide how to implement complex search (elastic search?)
 - Import/export artwork/art-collection
+- View pages
 
 # Features
 
