@@ -1,18 +1,17 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Enumeration } from 'src/app/common/models/enumeration.model';
 import { Subject } from 'rxjs';
 import { ArtistReferenceService } from 'src/app/common/services/artist-reference.service';
-import { Enumeration } from 'src/app/common/models/enumeration.model';
-import { takeUntil, finalize } from 'rxjs/operators';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
+import { takeUntil, finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'artwork-creator-section',
-  templateUrl: './artwork-creator-section.component.html',
-  styleUrls: ['./artwork-creator-section.component.scss']
+  selector: 'artwork-artist-section',
+  templateUrl: './artwork-artist-section.component.html'
 })
-export class ArtworkCreatorSectionComponent implements OnInit, OnDestroy {
-  @Input() artworkCreatorForm: FormGroup;
+export class ArtworkArtistSectionComponent implements OnInit, OnDestroy {
+  @Input() artworkArtistForm: FormGroup;
 
   artistOptions: Enumeration[] = [];
   artistsLoading: boolean;
@@ -38,6 +37,6 @@ export class ArtworkCreatorSectionComponent implements OnInit, OnDestroy {
   }
 
   get addNewArtist() {
-    return this.artworkCreatorForm.get('addNewArtist');
+    return this.artworkArtistForm.get('addNewArtist');
   }
 }

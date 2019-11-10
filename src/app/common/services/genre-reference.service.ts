@@ -7,10 +7,10 @@ import { Option } from '../models/option.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ClassificationTermReferenceService {
+export class GenreReferenceService {
   constructor(private http: HttpClient) {}
 
-  getAllClassificationTerms(): Observable<Option[]> {
+  getAllGenres(): Observable<Option[]> {
     return this.http.get<Option[]>(`${environment.API_URL}/reference/classificationTerm`);
   }
 }

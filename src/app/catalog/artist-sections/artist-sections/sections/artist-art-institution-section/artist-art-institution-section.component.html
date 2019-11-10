@@ -1,0 +1,11 @@
+<ng-container [formGroup]="artInstitutionsForm">
+    <catalart-section [title]="'Art Institutions'"
+                      [description]="'Art institutions associated with the artist'"
+                      [invalid]="artInstitutionsForm.invalid"
+                      [icon]="'layers'">
+      <catalart-multi-select [options]="artInstitutionOptions"
+                             [loading]="artInstitutionsLoading"
+                             formControlName="artInstitutions">
+      </catalart-multi-select>
+    </catalart-section>
+  </ng-container>

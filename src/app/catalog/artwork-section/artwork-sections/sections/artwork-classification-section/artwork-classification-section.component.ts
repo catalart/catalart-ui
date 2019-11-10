@@ -4,7 +4,7 @@ import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messa
 import { Subject } from 'rxjs';
 import { Option } from 'src/app/common/models/option.model';
 import { takeUntil, finalize } from 'rxjs/operators';
-import { ClassificationTermReferenceService } from 'src/app/common/services/classification-term-reference.service';
+import { GenreReferenceService } from 'src/app/common/services/genre-reference.service';
 
 @Component({
   selector: 'artwork-classification-section',
@@ -13,25 +13,24 @@ import { ClassificationTermReferenceService } from 'src/app/common/services/clas
 export class ArtworkClassificationSectionComponent implements OnInit, OnDestroy {
   @Input() artworkClassificationForm: FormGroup;
 
-  termsLoading: boolean;
-  classificationTermOptions: Option[] = [];
+  styleOptions: Option[] = [];
+  stylesLoading: boolean;
+  genreOptions: Option[] = [];
+  genresLoading: boolean;
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
-  constructor(
-    private classificationTermService: ClassificationTermReferenceService,
-    private sms: SnackbarMessagingService
-  ) {}
+  constructor(private genreService: GenreReferenceService, private sms: SnackbarMessagingService) {}
 
   ngOnInit() {
-    this.termsLoading = true;
-    this.classificationTermService
-      .getAllClassificationTerms()
+    this.genresLoading = true;
+    this.genreService
+      .getAllGenres()
       .pipe(
         takeUntil(this.destroyed),
-        finalize(() => (this.termsLoading = false))
+        finalize(() => (this.genresLoading = false))
       )
-      .subscribe(options => (this.classificationTermOptions = options), error => this.sms.displayError(error));
+      .subscribe(options => (this.genreOptions = options), error => this.sms.displayError(error));
   }
 
   ngOnDestroy() {

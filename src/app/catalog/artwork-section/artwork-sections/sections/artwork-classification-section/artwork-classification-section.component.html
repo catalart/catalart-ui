@@ -3,10 +3,16 @@
                     [description]="'Placement of a work of art or architecture within a classification scheme.'"
                     [invalid]="artworkClassificationForm.invalid"
                     [icon]="'category'">
-    <catalart-dropdown formControlName="classificationTerm"
-                        [options]="classificationTermOptions"
-                        [loading]="termsLoading"
-                        [placeholderText]="'Classification Term'"
+    <catalart-dropdown formControlName="style"
+                        [options]="styleOptions"
+                        [loading]="stylesLoading"
+                        [placeholderText]="'Style'"
+                        [required]="true">
+    </catalart-dropdown>
+    <catalart-dropdown formControlName="genre"
+                        [options]="genreOptions"
+                        [loading]="genresLoading"
+                        [placeholderText]="'Genre'"
                         [required]="true">
     </catalart-dropdown>
   </catalart-section>

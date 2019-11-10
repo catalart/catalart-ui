@@ -1,5 +1,5 @@
 <mat-form-field [formGroup]="form">
-  <mat-select [disabled]="loading"
+  <mat-select [attr.disabled]="loading"
               [placeholder]="loading ? 'Loading' : placeholderText"
               formControlName="selectedOption"
               disableOptionCentering

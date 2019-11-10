@@ -1,4 +1,6 @@
 import { Option } from 'src/app/common/models/option.model';
+import { DateAndPlace } from 'src/app/common/models/date-and-place.model';
+import { Preview } from 'src/app/common/models/preview.model';
 
 export class Creator {
   id: number;
@@ -6,21 +8,17 @@ export class Creator {
   role: string;
 }
 
-export class CreationDate {
-  earliestDate: string;
-  latestDate: string;
-}
-
 export class Artwork {
   id: number;
-  classificationTerm: Option;
   title: string;
   creator: Creator = new Creator();
-  creationDate: CreationDate = new CreationDate();
+  creationDate: DateAndPlace = new DateAndPlace();
   dimensions: string;
   materialsAndTechniquesDescription: string;
   generalSubjectTerms: string[];
   currentLocation: string;
-  preview: string; // url
+  preview: Preview;
   citation: string;
+  genre: Option;
+  style: Option;
 }

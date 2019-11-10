@@ -1,31 +1,38 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Artwork, Creator } from './artwork.model';
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { Enumeration } from 'src/app/common/models/enumeration.model';
-import { CustomValidators } from 'src/app/common/forms/custom-validators';
+import { DateAndPlaceFormService } from 'src/app/common/forms/date-and-place-form.service';
+import { PreviewFormService } from 'src/app/common/forms/preview-form.service';
 
 @Injectable()
 export class ArtworkFormService implements IFormService<Artwork> {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private dateAndPlaceFormService: DateAndPlaceFormService,
+    private previewFormService: PreviewFormService
+  ) {}
 
   buildForm(artwork: Artwork): FormGroup {
     return this.fb.group({
       classificationSection: this.buildClassificationSection(artwork),
       titleSection: this.buildTitleSection(artwork),
-      creationSection: this.buildCreationSection(artwork),
+      artistSection: this.buildArtistSection(artwork.creator),
+      creationDateSection: this.dateAndPlaceFormService.buildForm(artwork.creationDate),
       measurementsSection: this.buildMeasurementsSection(artwork),
       materialsAndTechniquesSection: this.buildMaterialsAndTechniquesSection(artwork),
       subjectMatterSection: this.buildSubjectMatterSection(artwork),
       locationSection: this.buildLocationSection(artwork),
-      visualDocumentationSection: this.buildVisualDocumentationSection(artwork),
+      visualDocumentationSection: this.previewFormService.buildForm(artwork.preview),
       citationSection: this.buildCitationSection(artwork)
     });
   }
 
   private buildClassificationSection(artwork: Artwork): FormGroup {
     return this.fb.group({
-      classificationTerm: [artwork.classificationTerm, [Validators.required]]
+      style: [artwork.style, [Validators.required]],
+      genre: [artwork.genre, [Validators.required]]
     });
   }
 
@@ -35,15 +42,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
     });
   }
 
-  private buildCreationSection(artwork: Artwork): FormGroup {
-    return this.fb.group({
-      creatorForm: this.buildCreatorForm(artwork.creator),
-      creationEarliestDate: [artwork.creationDate.earliestDate, [Validators.required]],
-      creationLatestDate: [artwork.creationDate.latestDate, [Validators.required]]
-    });
-  }
-
-  private buildCreatorForm(creator: Creator): FormGroup {
+  private buildArtistSection(creator: Creator): FormGroup {
     const form = this.fb.group({
       addNewArtist: false,
       creator: new Enumeration(creator.id, creator.identity),
@@ -102,12 +101,6 @@ export class ArtworkFormService implements IFormService<Artwork> {
     });
   }
 
-  private buildVisualDocumentationSection(artwork: Artwork): FormGroup {
-    return this.fb.group({
-      preview: [artwork.preview, [CustomValidators.validUrl]]
-    });
-  }
-
   private buildCitationSection(artwork: Artwork): FormGroup {
     return this.fb.group({
       citation: [artwork.citation, [Validators.required]]
@@ -119,7 +112,8 @@ export class ArtworkFormService implements IFormService<Artwork> {
     return Object.assign(artwork, {
       ...this.mergeClassificationSection(artworkFormValue.classificationSection),
       ...this.mergeTitleSection(artworkFormValue.titleSection),
-      ...this.mergeCreationSection(artworkFormValue.creationSection),
+      ...this.mergeArtistSection(artworkFormValue.artistSection),
+      ...this.mergeCreationDateSection(artworkFormValue.creationDateSection, artwork),
       ...this.mergeMeasurementsSection(artworkFormValue.measurementsSection),
       ...this.mergeMaterialsAndTechniquesSection(artworkFormValue.materialsAndTechniquesSection),
       ...this.mergeSubjectMatterSection(artworkFormValue.subjectMatterSection),
@@ -131,7 +125,8 @@ export class ArtworkFormService implements IFormService<Artwork> {
 
   private mergeClassificationSection(classificationSection: any): Partial<Artwork> {
     return {
-      classificationTerm: classificationSection.classificationTerm
+      genre: classificationSection.genre,
+      style: classificationSection.style
     };
   }
 
@@ -141,13 +136,15 @@ export class ArtworkFormService implements IFormService<Artwork> {
     };
   }
 
-  private mergeCreationSection(creationSection: any): Partial<Artwork> {
+  private mergeArtistSection(creationSection: any): Partial<Artwork> {
     return {
-      creator: this.mergeCreatorSection(creationSection.creatorForm),
-      creationDate: {
-        earliestDate: creationSection.creationEarliestDate,
-        latestDate: creationSection.creationLatestDate
-      }
+      creator: this.mergeCreatorSection(creationSection)
+    };
+  }
+
+  private mergeCreationDateSection(creationDateSection: any, artwork: Artwork): Partial<Artwork> {
+    return {
+      creationDate: this.dateAndPlaceFormService.mergeForm(creationDateSection, artwork.creationDate)
     };
   }
 
@@ -189,7 +186,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
 
   private mergeVisualDocumentationSection(visualDocumentationSection: any): Partial<Artwork> {
     return {
-      preview: visualDocumentationSection.preview
+      preview: this.previewFormService.mergeForm(visualDocumentationSection.preview)
     };
   }
 
