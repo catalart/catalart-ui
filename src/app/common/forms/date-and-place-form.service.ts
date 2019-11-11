@@ -3,16 +3,21 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { Date, DateAndPlace, Place } from '../models/date-and-place.model';
 
+export interface DateAndPlaceOptions {
+  forceDateToBeSelected?: boolean;
+  forcePlaceToBeSelected?: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DateAndPlaceFormService implements IFormService<DateAndPlace> {
   constructor(private fb: FormBuilder) {}
 
-  buildForm(dateAndPlace: DateAndPlace): FormGroup {
+  buildForm(dateAndPlace: DateAndPlace = new DateAndPlace(), options?: DateAndPlaceOptions): FormGroup {
     const form = this.fb.group({
-      date: this.buildDateSection(new Date()),
-      place: this.buildPlaceSection(new Place())
+      date: this.buildDateSection(dateAndPlace.date, options),
+      place: this.buildPlaceSection(dateAndPlace.place, options)
     });
 
     this.watchPlaceSwitch(form);
@@ -24,14 +29,15 @@ export class DateAndPlaceFormService implements IFormService<DateAndPlace> {
 
     return {
       ...date,
-      ...this.mergeDateSection(dateAndPlaceFormValue.date),
-      ...this.mergePlaceSection(dateAndPlaceFormValue.place)
+      date: this.mergeDateSection(dateAndPlaceFormValue.date),
+      place: this.mergePlaceSection(dateAndPlaceFormValue.place)
     };
   }
 
-  private buildDateSection(date: Date): FormGroup {
+  private buildDateSection(date: Date, options?: DateAndPlaceOptions): FormGroup {
+    const isDateKnown = (options && options.forceDateToBeSelected) || date.isDateKnown;
     const form = this.fb.group({
-      isDateKnown: [date.isDateKnown],
+      isDateKnown: [isDateKnown],
       isWithinARange: [date.isWithinARange],
       startYear: [date.startYear],
       endYear: [date.endYear],
@@ -43,9 +49,10 @@ export class DateAndPlaceFormService implements IFormService<DateAndPlace> {
     return form;
   }
 
-  private buildPlaceSection(place: Place) {
+  private buildPlaceSection(place: Place, options?: DateAndPlaceOptions) {
+    const isPlaceKnown = (options && options.forcePlaceToBeSelected) || place.isPlaceKnown;
     return this.fb.group({
-      isPlaceKnown: [place.isPlaceKnown],
+      isPlaceKnown: [isPlaceKnown],
       location: [place.location]
     });
   }

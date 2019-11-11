@@ -1,8 +1,3 @@
-export class DateAndPlace {
-  date: Date;
-  place?: Place;
-}
-
 export class Date {
   isDateKnown: boolean;
   isWithinARange: boolean;
@@ -14,4 +9,9 @@ export class Date {
 export class Place {
   isPlaceKnown: boolean;
   location: string;
+}
+
+export class DateAndPlace {
+  date: Date = new Date();
+  place?: Place = new Place();
 }

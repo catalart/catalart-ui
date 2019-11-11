@@ -7,10 +7,10 @@ import { Option } from '../models/option.model';
 @Injectable({
   providedIn: 'root'
 })
-export class GenreReferenceService {
+export class ArtMovementReferenceService {
   constructor(private http: HttpClient) {}
 
-  getAllGenres(): Observable<Option[]> {
-    return this.http.get<Option[]>(`${environment.API_URL}/reference/genre`);
+  getAllArtMovements(): Observable<Option[]> {
+    return this.http.get<Option[]>(`${environment.API_URL}/reference/artMovement`);
   }
 }

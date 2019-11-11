@@ -12,7 +12,7 @@ export class PreviewFormService implements IFormService<Preview> {
 
   buildForm(preview: Preview = new Preview()): FormGroup {
     return this.fb.group({
-      preview: [preview.preview, CustomValidators.validUrl]
+      preview: [preview.url, CustomValidators.validUrl]
     });
   }
 
@@ -20,7 +20,7 @@ export class PreviewFormService implements IFormService<Preview> {
     const previewFormValue = form.value;
 
     return {
-      preview: previewFormValue.preview
+      url: previewFormValue.preview
     };
   }
 }

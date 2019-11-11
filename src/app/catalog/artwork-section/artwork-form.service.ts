@@ -113,7 +113,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
       ...this.mergeClassificationSection(artworkFormValue.classificationSection),
       ...this.mergeTitleSection(artworkFormValue.titleSection),
       ...this.mergeArtistSection(artworkFormValue.artistSection),
-      ...this.mergeCreationDateSection(artworkFormValue.creationDateSection, artwork),
+      ...this.mergeCreationDateSection(form.get('creationDateSection') as FormGroup, artwork),
       ...this.mergeMeasurementsSection(artworkFormValue.measurementsSection),
       ...this.mergeMaterialsAndTechniquesSection(artworkFormValue.materialsAndTechniquesSection),
       ...this.mergeSubjectMatterSection(artworkFormValue.subjectMatterSection),
@@ -142,7 +142,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
     };
   }
 
-  private mergeCreationDateSection(creationDateSection: any, artwork: Artwork): Partial<Artwork> {
+  private mergeCreationDateSection(creationDateSection: FormGroup, artwork: Artwork): Partial<Artwork> {
     return {
       creationDate: this.dateAndPlaceFormService.mergeForm(creationDateSection, artwork.creationDate)
     };

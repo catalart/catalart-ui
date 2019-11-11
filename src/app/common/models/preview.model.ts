@@ -1,3 +1,3 @@
 export class Preview {
-  preview: string;
+  url: string;
 }
