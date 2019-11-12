@@ -4,7 +4,8 @@ import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messa
 import { Subject } from 'rxjs';
 import { Option } from 'src/app/common/models/option.model';
 import { takeUntil, finalize } from 'rxjs/operators';
-import { GenreReferenceService } from 'src/app/common/services/genre-reference.service';
+import { ArtworkGenreReferenceService } from 'src/app/common/services/artwork-genre-reference.service';
+import { ArtworkStyleReferenceService } from 'src/app/common/services/artwork-style-reference.service';
 
 @Component({
   selector: 'artwork-classification-section',
@@ -20,9 +21,23 @@ export class ArtworkClassificationSectionComponent implements OnInit, OnDestroy 
 
   private destroyed: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private genreService: GenreReferenceService, private sms: SnackbarMessagingService) {}
+  constructor(
+    private genreService: ArtworkGenreReferenceService,
+    private styleService: ArtworkStyleReferenceService,
+    private sms: SnackbarMessagingService
+  ) {}
 
   ngOnInit() {
+    this.loadGenres();
+    this.loadStyles();
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
+  }
+
+  private loadGenres() {
     this.genresLoading = true;
     this.genreService
       .getAllGenres()
@@ -30,11 +45,23 @@ export class ArtworkClassificationSectionComponent implements OnInit, OnDestroy 
         takeUntil(this.destroyed),
         finalize(() => (this.genresLoading = false))
       )
-      .subscribe(options => (this.genreOptions = options), error => this.sms.displayError(error));
+      .subscribe(
+        options => (this.genreOptions = options),
+        error => this.sms.displayError(error)
+      );
   }
 
-  ngOnDestroy() {
-    this.destroyed.next();
-    this.destroyed.complete();
+  private loadStyles() {
+    this.stylesLoading = true;
+    this.styleService
+      .getAllStyles()
+      .pipe(
+        takeUntil(this.destroyed),
+        finalize(() => (this.stylesLoading = false))
+      )
+      .subscribe(
+        options => (this.styleOptions = options),
+        error => this.sms.displayError(error)
+      );
   }
 }

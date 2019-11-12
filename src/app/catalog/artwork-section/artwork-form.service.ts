@@ -29,6 +29,22 @@ export class ArtworkFormService implements IFormService<Artwork> {
     });
   }
 
+  mergeForm(form: FormGroup, artwork: Artwork): Artwork {
+    const artworkFormValue = form.value;
+    return Object.assign(artwork, {
+      ...this.mergeClassificationSection(artworkFormValue.classificationSection),
+      ...this.mergeTitleSection(artworkFormValue.titleSection),
+      ...this.mergeArtistSection(artworkFormValue.artistSection),
+      ...this.mergeCreationDateSection(form.get('creationDateSection') as FormGroup, artwork),
+      ...this.mergeMeasurementsSection(artworkFormValue.measurementsSection),
+      ...this.mergeMaterialsAndTechniquesSection(artworkFormValue.materialsAndTechniquesSection),
+      ...this.mergeSubjectMatterSection(artworkFormValue.subjectMatterSection),
+      ...this.mergeLocationSection(artworkFormValue.locationSection),
+      ...this.mergeVisualDocumentationSection(form.get('visualDocumentationSection') as FormGroup),
+      ...this.mergeCitationSection(artworkFormValue.citationSection)
+    });
+  }
+
   private buildClassificationSection(artwork: Artwork): FormGroup {
     return this.fb.group({
       style: [artwork.style, [Validators.required]],
@@ -107,22 +123,6 @@ export class ArtworkFormService implements IFormService<Artwork> {
     });
   }
 
-  mergeForm(form: FormGroup, artwork: Artwork): Artwork {
-    const artworkFormValue = form.value;
-    return Object.assign(artwork, {
-      ...this.mergeClassificationSection(artworkFormValue.classificationSection),
-      ...this.mergeTitleSection(artworkFormValue.titleSection),
-      ...this.mergeArtistSection(artworkFormValue.artistSection),
-      ...this.mergeCreationDateSection(form.get('creationDateSection') as FormGroup, artwork),
-      ...this.mergeMeasurementsSection(artworkFormValue.measurementsSection),
-      ...this.mergeMaterialsAndTechniquesSection(artworkFormValue.materialsAndTechniquesSection),
-      ...this.mergeSubjectMatterSection(artworkFormValue.subjectMatterSection),
-      ...this.mergeLocationSection(artworkFormValue.locationSection),
-      ...this.mergeVisualDocumentationSection(artworkFormValue.visualDocumentationSection),
-      ...this.mergeCitationSection(artworkFormValue.citationSection)
-    });
-  }
-
   private mergeClassificationSection(classificationSection: any): Partial<Artwork> {
     return {
       genre: classificationSection.genre,
@@ -184,9 +184,9 @@ export class ArtworkFormService implements IFormService<Artwork> {
     };
   }
 
-  private mergeVisualDocumentationSection(visualDocumentationSection: any): Partial<Artwork> {
+  private mergeVisualDocumentationSection(visualDocumentationSection: FormGroup): Partial<Artwork> {
     return {
-      preview: this.previewFormService.mergeForm(visualDocumentationSection.preview)
+      preview: this.previewFormService.mergeForm(visualDocumentationSection)
     };
   }
 

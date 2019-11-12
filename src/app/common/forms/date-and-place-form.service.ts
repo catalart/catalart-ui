@@ -126,18 +126,19 @@ export class DateAndPlaceFormService implements IFormService<DateAndPlace> {
   }
 
   private mergeDateSection(dateValue: any): Date {
-    return <Date>{
+    return {
+      isDateKnown: !!dateValue.isDateKnown,
       isWithinARange: !!dateValue.isWithinARange,
       endYear: dateValue.endYear,
       startYear: dateValue.startYear,
       exactYear: dateValue.exactYear
-    };
+    } as Date;
   }
 
   private mergePlaceSection(placeValue: any): Place {
-    return <Place>{
-      isPlaceKnown: placeValue.isPlaceKnown,
+    return {
+      isPlaceKnown: !!placeValue.isPlaceKnown,
       location: placeValue.location
-    };
+    } as Place;
   }
 }
