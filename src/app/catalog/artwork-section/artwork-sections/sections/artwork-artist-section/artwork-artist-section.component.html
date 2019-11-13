@@ -1,0 +1,31 @@
+<ng-container [formGroup]="artworkArtistForm">
+  <catalart-section [title]="'Artist'"
+                    [description]="'The artist rwho produced the work of art or architecture and its components.'"
+                    [invalid]="artworkArtistForm.invalid"
+                    [icon]="'date_range'">  <catalart-switch formControlName="addNewArtist"
+                    [label]="'Add New Artist'">
+    </catalart-switch>
+    <ng-container *ngIf="addNewArtist.value else chooseArtist">
+      <mat-form-field>
+        <input matInput
+              placeholder="Creator Identity"
+              formControlName="identity"
+              [required]="!!addNewArtist.value">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+              placeholder="Creator Role"
+              formControlName="role"
+              [required]="!!addNewArtist.value">
+      </mat-form-field>
+    </ng-container>
+    <ng-template #chooseArtist>
+      <catalart-dropdown formControlName="creator"
+                        [options]="artistOptions"
+                        [loading]="artistsLoading"
+                        [placeholderText]="'Choose Artist'"
+                        [required]="!addNewArtist.value">
+      </catalart-dropdown>
+    </ng-template>
+  </catalart-section>
+</ng-container>

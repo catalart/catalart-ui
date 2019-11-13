@@ -10,9 +10,17 @@ import { CatalartCommonModule } from 'src/app/common/catalart-common.module';
 import { ArtistSectionsComponent } from './artist-sections.component';
 import { ArtistGeneralInformationSectionComponent } from './sections/artist-general-information-section/artist-general-information-section.component';
 import { ArtistArtworkSectionComponent } from './sections/artist-artwork-section/artist-artwork-section.component';
+import { ArtistArtMovementSectionComponent } from './sections/artist-art-movement-section/artist-art-movement-section.component';
+import { ArtistArtInstitutionSectionComponent } from './sections/artist-art-institution-section/artist-art-institution-section.component';
 
 @NgModule({
-  declarations: [ArtistSectionsComponent, ArtistGeneralInformationSectionComponent, ArtistArtworkSectionComponent],
+  declarations: [
+    ArtistSectionsComponent,
+    ArtistGeneralInformationSectionComponent,
+    ArtistArtworkSectionComponent,
+    ArtistArtMovementSectionComponent,
+    ArtistArtInstitutionSectionComponent
+  ],
   imports: [
     BrowserModule,
     RoutingModule,

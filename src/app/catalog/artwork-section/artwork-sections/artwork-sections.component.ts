@@ -35,16 +35,20 @@ export class ArtworkSectionsComponent {
     return this.artworkForm.get('titleSection');
   }
 
-  get creationForm() {
-    return this.artworkForm.get('creationSection');
+  get artistForm() {
+    return this.artworkForm.get('artistSection');
+  }
+
+  get creationDateForm() {
+    return this.artworkForm.get('creationDateSection');
   }
 
   get measurementsForm() {
     return this.artworkForm.get('measurementsSection');
   }
 
-  get materialsAndTechniquesForm() {
-    return this.artworkForm.get('materialsAndTechniquesSection');
+  get mediumForm() {
+    return this.artworkForm.get('mediumSection');
   }
 
   get subjectMatterForm() {
@@ -55,7 +59,7 @@ export class ArtworkSectionsComponent {
     return this.artworkForm.get('locationSection');
   }
 
-  get visualDocumentationForm() {
+  get previewForm() {
     return this.artworkForm.get('visualDocumentationSection');
   }
 

@@ -1,0 +1,11 @@
+<ng-container [formGroup]="artMovementsForm">
+    <catalart-section [title]="'Art Movements'"
+                      [description]="'Art movements associated with this artist'"
+                      [invalid]="artMovementsForm.invalid"
+                      [icon]="'layers'">
+      <catalart-multi-select [options]="artMovementOptions"
+                             [loading]="artMovementsLoading"
+                             formControlName="artMovements">
+      </catalart-multi-select>
+    </catalart-section>
+  </ng-container>

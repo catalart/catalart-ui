@@ -15,6 +15,8 @@ import { CatalartMultiSelectComponent } from './components/catalart-multi-select
 import { CatalartButtonComponent } from './components/catalart-button/catalart-button.component';
 import { CatalartSearchComponent } from './components/catalart-search/catalart-search.component';
 import { CatalartSearchBarComponent } from './components/catalart-search-bar/catalart-search-bar.component';
+import { CatalartPreviewSectionComponent } from './components/catalart-preview-section/catalart-preview-section.component';
+import { CatalartDateAndPlaceSectionComponent } from './components/catalart-date-and-place-section/catalart-date-and-place-section.component';
 
 @NgModule({
   imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule],
@@ -30,7 +32,9 @@ import { CatalartSearchBarComponent } from './components/catalart-search-bar/cat
     CatalartMultiSelectComponent,
     CatalartButtonComponent,
     CatalartSearchComponent,
-    CatalartSearchBarComponent
+    CatalartSearchBarComponent,
+    CatalartPreviewSectionComponent,
+    CatalartDateAndPlaceSectionComponent
   ],
   exports: [
     CatalartSectionComponent,
@@ -43,7 +47,9 @@ import { CatalartSearchBarComponent } from './components/catalart-search-bar/cat
     CatalartMultiSelectComponent,
     CatalartButtonComponent,
     CatalartSearchComponent,
-    CatalartSearchBarComponent
+    CatalartSearchBarComponent,
+    CatalartPreviewSectionComponent,
+    CatalartDateAndPlaceSectionComponent
   ]
 })
 export class CatalartCommonModule {}

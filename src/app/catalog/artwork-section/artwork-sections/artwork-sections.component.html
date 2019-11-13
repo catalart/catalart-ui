@@ -13,12 +13,13 @@
     <catalart-section-container>
       <artwork-title-section [artworkTitleForm]="titleForm"></artwork-title-section>
       <artwork-classification-section [artworkClassificationForm]="classificationForm"></artwork-classification-section>
-      <artwork-creation-section [artworkCreationForm]="creationForm"></artwork-creation-section>
+      <artwork-artist-section [artworkArtistForm]="artistForm"></artwork-artist-section>
+      <catalart-date-and-place-section [dateAndPlaceForm]="creationDateForm" [title]="'Creation Date'"></catalart-date-and-place-section>
       <artwork-subject-matter-section [artworkSubjectMatterForm]="subjectMatterForm"></artwork-subject-matter-section>
-      <artwork-material-and-techniques-section [artworkMaterialAndTechniquesForm]="materialsAndTechniquesForm"></artwork-material-and-techniques-section>
+      <artwork-medium-section [artworkMediumForm]="mediumForm"></artwork-medium-section>
       <artwork-measurements-section [artworkMeasurementsForm]="measurementsForm"></artwork-measurements-section>
       <artwork-location-section [artworkLocationForm]="locationForm"></artwork-location-section>
-      <artwork-visual-documentation-section [artworkVisualDocumentationForm]="visualDocumentationForm"></artwork-visual-documentation-section>
+      <catalart-preview-section [previewForm]="previewForm"></catalart-preview-section>
       <artwork-citation-section [artworkCitationForm]="citationForm"></artwork-citation-section>
     </catalart-section-container>
   </span>

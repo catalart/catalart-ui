@@ -41,4 +41,10 @@
 
 .title {
   cursor: pointer;
+
+  mat-icon {
+    line-height: 18px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
 }

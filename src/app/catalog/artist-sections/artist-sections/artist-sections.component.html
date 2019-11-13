@@ -13,6 +13,14 @@
     <catalart-section-container>
       <artist-general-information-section [artistGeneralInformationForm]="generalInformationForm">
       </artist-general-information-section>
+      <catalart-date-and-place-section [title]="'Birth Date'"
+                                       [dateAndPlaceForm]="bornForm"
+                                       [forceDateToBeSelected]="true"></catalart-date-and-place-section>
+      <catalart-date-and-place-section [title]="'Death Date'"
+                                       [dateAndPlaceForm]="deathForm"></catalart-date-and-place-section>
+      <artist-art-institution-section [artInstitutionsForm]="artInstitutionsForm"></artist-art-institution-section>
+      <artist-art-movement-section [artMovementsForm]="artMovementsForm"></artist-art-movement-section>
+      <catalart-preview-section [previewForm]="previewForm"></catalart-preview-section>
       <artist-artwork-section *ngIf="!addMode" [artist]="artist"></artist-artwork-section>
     </catalart-section-container>
   </span>

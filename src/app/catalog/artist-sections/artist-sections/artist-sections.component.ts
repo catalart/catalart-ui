@@ -29,4 +29,24 @@ export class ArtistSectionsComponent {
   get generalInformationForm() {
     return this.artistForm.get('generalInformation');
   }
+
+  get previewForm() {
+    return this.artistForm.get('preview');
+  }
+
+  get bornForm() {
+    return this.artistForm.get('born');
+  }
+
+  get deathForm() {
+    return this.artistForm.get('died');
+  }
+
+  get artInstitutionsForm() {
+    return this.artistForm.get('artInstitutions');
+  }
+
+  get artMovementsForm() {
+    return this.artistForm.get('artMovements');
+  }
 }

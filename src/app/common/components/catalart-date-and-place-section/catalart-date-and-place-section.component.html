@@ -1,0 +1,47 @@
+<catalart-section [title]="title"
+                  [invalid]="dateAndPlaceForm.invalid"
+                  [icon]="'date_range'">
+  <ng-container [formGroup]="dateForm">
+    <catalart-switch *ngIf="!forceDateToBeSelected"
+                    formControlName="isDateKnown"
+                    [label]="'Is Date Known?'">
+    </catalart-switch>
+    <catalart-switch *ngIf="forceDateToBeSelected || isDateKnown"
+                    formControlName="isWithinARange"
+                    [label]="'Is date within a range?'">
+    </catalart-switch>
+    <mat-form-field *ngIf="isDateKnown && isWithinARange">
+      <input matInput
+            type="number"
+            placeholder="Earliest Known Year"
+            formControlName="startYear"
+            [required]="isWithinARange">
+    </mat-form-field>
+    <mat-form-field *ngIf="isDateKnown && isWithinARange">
+      <input matInput
+            type="number"
+            placeholder="Latest Known Year"
+            formControlName="endYear"
+            [required]="isWithinARange">
+    </mat-form-field>
+    <mat-form-field *ngIf="isDateKnown && !isWithinARange">
+      <input matInput
+            type="number"
+            placeholder="Exact Year"
+            formControlName="exactYear"
+            [required]="!isWithinARange">
+    </mat-form-field>
+  </ng-container>
+  <ng-container [formGroup]="placeForm">
+    <catalart-switch *ngIf="!forcePlaceToBeSelected"
+                    formControlName="isPlaceKnown"
+                    [label]="'Is Place Known?'">
+    </catalart-switch>
+    <mat-form-field *ngIf="isPlaceKnown">
+      <input matInput
+            placeholder="Location"
+            formControlName="location"
+            [required]="isPlaceKnown">
+    </mat-form-field>
+  </ng-container>
+</catalart-section>

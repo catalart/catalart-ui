@@ -1,8 +1,6 @@
-
-<ng-container [formGroup]="artworkVisualDocumentationForm">
+<ng-container [formGroup]="previewForm">
   <catalart-section [title]="'Related Visual Documentation'"
-                    [description]="'The identification of images that depict the work of art.'"
-                    [invalid]="artworkVisualDocumentationForm.invalid"
+                    [invalid]="previewForm.invalid"
                     [icon]="'insert_photo'">
     <mat-form-field>
       <input matInput

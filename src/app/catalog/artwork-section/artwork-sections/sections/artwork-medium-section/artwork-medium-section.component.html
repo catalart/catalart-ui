@@ -1,0 +1,13 @@
+<ng-container [formGroup]="artworkMediumForm">
+  <catalart-section [title]="'Medium'"
+                    [description]="'The substances or materials used in the creation of a work of art.'"
+                    [invalid]="artworkMediumForm.invalid"
+                    [icon]="'assignment'">
+    <mat-form-field>
+      <input matInput
+             placeholder="Medium"
+             formControlName="medium"
+             required>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>
