@@ -21,7 +21,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
       artistSection: this.buildArtistSection(artwork.creator),
       creationDateSection: this.dateAndPlaceFormService.buildForm(artwork.creationDate),
       measurementsSection: this.buildMeasurementsSection(artwork),
-      materialsAndTechniquesSection: this.buildMaterialsAndTechniquesSection(artwork),
+      mediumSection: this.buildMediumSection(artwork),
       subjectMatterSection: this.buildSubjectMatterSection(artwork),
       locationSection: this.buildLocationSection(artwork),
       visualDocumentationSection: this.previewFormService.buildForm(artwork.preview),
@@ -35,12 +35,12 @@ export class ArtworkFormService implements IFormService<Artwork> {
       ...this.mergeClassificationSection(artworkFormValue.classificationSection),
       ...this.mergeTitleSection(artworkFormValue.titleSection),
       ...this.mergeArtistSection(artworkFormValue.artistSection),
-      ...this.mergeCreationDateSection(form.get('creationDateSection') as FormGroup, artwork),
+      ...this.mergeCreationDateSection(artworkFormValue.creationDateSection, artwork),
       ...this.mergeMeasurementsSection(artworkFormValue.measurementsSection),
-      ...this.mergeMaterialsAndTechniquesSection(artworkFormValue.materialsAndTechniquesSection),
+      ...this.mergeMediumSection(artworkFormValue.mediumSection),
       ...this.mergeSubjectMatterSection(artworkFormValue.subjectMatterSection),
       ...this.mergeLocationSection(artworkFormValue.locationSection),
-      ...this.mergeVisualDocumentationSection(form.get('visualDocumentationSection') as FormGroup),
+      ...this.mergeVisualDocumentationSection(artworkFormValue.visualDocumentationSection),
       ...this.mergeCitationSection(artworkFormValue.citationSection)
     });
   }
@@ -99,9 +99,9 @@ export class ArtworkFormService implements IFormService<Artwork> {
     });
   }
 
-  private buildMaterialsAndTechniquesSection(artwork: Artwork): FormGroup {
+  private buildMediumSection(artwork: Artwork): FormGroup {
     return this.fb.group({
-      materialsAndTechniquesDescription: [artwork.materialsAndTechniquesDescription, [Validators.required]]
+      medium: [artwork.medium, [Validators.required]]
     });
   }
 
@@ -142,7 +142,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
     };
   }
 
-  private mergeCreationDateSection(creationDateSection: FormGroup, artwork: Artwork): Partial<Artwork> {
+  private mergeCreationDateSection(creationDateSection: any, artwork: Artwork): Partial<Artwork> {
     return {
       creationDate: this.dateAndPlaceFormService.mergeForm(creationDateSection, artwork.creationDate)
     };
@@ -166,9 +166,9 @@ export class ArtworkFormService implements IFormService<Artwork> {
     };
   }
 
-  private mergeMaterialsAndTechniquesSection(materialsAndTechniquesSection: any): Partial<Artwork> {
+  private mergeMediumSection(mediumSection: any): Partial<Artwork> {
     return {
-      materialsAndTechniquesDescription: materialsAndTechniquesSection.materialsAndTechniquesDescription
+      medium: mediumSection.medium
     };
   }
 
@@ -184,7 +184,7 @@ export class ArtworkFormService implements IFormService<Artwork> {
     };
   }
 
-  private mergeVisualDocumentationSection(visualDocumentationSection: FormGroup): Partial<Artwork> {
+  private mergeVisualDocumentationSection(visualDocumentationSection: any): Partial<Artwork> {
     return {
       preview: this.previewFormService.mergeForm(visualDocumentationSection)
     };

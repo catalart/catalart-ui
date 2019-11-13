@@ -14,7 +14,7 @@ export class Artwork {
   creator: Creator = new Creator();
   creationDate: DateAndPlace = new DateAndPlace();
   dimensions: string;
-  materialsAndTechniquesDescription: string;
+  medium: string;
   generalSubjectTerms: string[];
   currentLocation: string;
   preview: Preview;

@@ -24,8 +24,8 @@ export class DateAndPlaceFormService implements IFormService<DateAndPlace> {
     return form;
   }
 
-  mergeForm(form: FormGroup, date: DateAndPlace): DateAndPlace {
-    const dateAndPlaceFormValue = form.value;
+  mergeForm(form: any, date: DateAndPlace): DateAndPlace {
+    const dateAndPlaceFormValue = form instanceof FormGroup ? form.value : form;
 
     return {
       ...date,

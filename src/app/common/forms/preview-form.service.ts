@@ -16,8 +16,8 @@ export class PreviewFormService implements IFormService<Preview> {
     });
   }
 
-  mergeForm(form: FormGroup): Preview {
-    const previewFormValue = form.value;
+  mergeForm(form: any): Preview {
+    const previewFormValue = form instanceof FormGroup ? form.value : form;
 
     return {
       url: previewFormValue.preview

@@ -9,7 +9,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { ArtworkCitationSectionComponent } from './sections/artwork-citation-section/artwork-citation-section.component';
 import { ArtworkArtistSectionComponent } from './sections/artwork-artist-section/artwork-artist-section.component';
 import { ArtworkLocationSectionComponent } from './sections/artwork-location-section/artwork-location-section.component';
-import { ArtworkMaterialAndTechniquesSectionComponent } from './sections/artwork-material-and-techniques-section/artwork-material-and-techniques-section.component';
+import { ArtworkMediumSectionComponent } from './sections/artwork-medium-section/artwork-medium-section.component';
 import { ArtworkMeasurementsSectionComponent } from './sections/artwork-measurements-section/artwork-measurements-section.component';
 import { ArtworkSubjectMatterSectionComponent } from './sections/artwork-subject-matter-section/artwork-subject-matter-section.component';
 import { ArtworkTitleSectionComponent } from './sections/artwork-title-section/artwork-title-section.component';
@@ -23,7 +23,7 @@ import { ArtworkSectionsComponent } from './artwork-sections.component';
     ArtworkArtistSectionComponent,
     ArtworkClassificationSectionComponent,
     ArtworkLocationSectionComponent,
-    ArtworkMaterialAndTechniquesSectionComponent,
+    ArtworkMediumSectionComponent,
     ArtworkMeasurementsSectionComponent,
     ArtworkSubjectMatterSectionComponent,
     ArtworkTitleSectionComponent,

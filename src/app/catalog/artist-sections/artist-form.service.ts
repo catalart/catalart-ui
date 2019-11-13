@@ -30,11 +30,11 @@ export class ArtistFormService implements IFormService<Artist> {
     return {
       ...artist,
       ...this.mergeGeneralInformationSection(artistFormValue.generalInformation),
-      ...this.mergeBirthInformation(form.get('born') as FormGroup, artist),
-      ...this.mergeDeathInformation(form.get('died') as FormGroup, artist),
+      ...this.mergeBirthInformation(artistFormValue.born, artist),
+      ...this.mergeDeathInformation(artistFormValue.died, artist),
       ...this.mergeArtInstitutionsSection(artistFormValue.artInstitutions),
       ...this.mergeArtMovementsSection(artistFormValue.artMovements),
-      ...this.mergePreviewSection(form.get('preview') as FormGroup)
+      ...this.mergePreviewSection(artistFormValue.preview)
     };
   }
 
@@ -66,13 +66,13 @@ export class ArtistFormService implements IFormService<Artist> {
     };
   }
 
-  private mergeBirthInformation(birthInformationSection: FormGroup, artist: Artist): Partial<Artist> {
+  private mergeBirthInformation(birthInformationSection: any, artist: Artist): Partial<Artist> {
     return {
       born: this.dateAndPlaceFormService.mergeForm(birthInformationSection, artist.born)
     };
   }
 
-  private mergeDeathInformation(birthInformationSection: FormGroup, artist: Artist): Partial<Artist> {
+  private mergeDeathInformation(birthInformationSection: any, artist: Artist): Partial<Artist> {
     return {
       died: this.dateAndPlaceFormService.mergeForm(birthInformationSection, artist.died)
     };
@@ -90,7 +90,7 @@ export class ArtistFormService implements IFormService<Artist> {
     };
   }
 
-  private mergePreviewSection(previewSection: FormGroup): Partial<Artist> {
+  private mergePreviewSection(previewSection: any): Partial<Artist> {
     return {
       preview: this.previewFormService.mergeForm(previewSection)
     };

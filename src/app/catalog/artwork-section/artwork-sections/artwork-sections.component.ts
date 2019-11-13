@@ -47,8 +47,8 @@ export class ArtworkSectionsComponent {
     return this.artworkForm.get('measurementsSection');
   }
 
-  get materialsAndTechniquesForm() {
-    return this.artworkForm.get('materialsAndTechniquesSection');
+  get mediumForm() {
+    return this.artworkForm.get('mediumSection');
   }
 
   get subjectMatterForm() {
