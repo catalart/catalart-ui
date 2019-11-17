@@ -1,0 +1,24 @@
+:host {
+  .breadcrumb-item:first-of-type {
+    margin-left: 12px;
+  }
+
+  .breadcrumb-item {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif,
+      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    text-decoration: none;
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .last-breadcrumb {
+    color: rgba(0, 0, 0, 0.87);
+    cursor: default;
+  }
+
+  .breadcrumb-separator {
+    margin-top: 12px;
+    vertical-align: middle;
+    line-height: 0.45;
+  }
+}
