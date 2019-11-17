@@ -1,0 +1,7 @@
+<ng-container *ngIf="breadcrumbs.length > 1">
+  <ng-container *ngFor="let bc of breadcrumbSet">
+    <a class="breadcrumb-item breadcrumb-text" [routerLink]="bc.route">{{bc.text}}</a>
+    <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+  </ng-container>
+</ng-container>
+<a class="breadcrumb-item breadcrumb-text last-breadcrumb">{{lastBreadcrumb?.text}}</a>

@@ -8,6 +8,10 @@ import { ArtistFormService } from '../artist-form.service';
 import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messaging.service';
 import { Artist } from '../artist.model';
 import { ArtistService } from '../artist.service';
+import { BreadcrumbService } from 'src/app/common/services/breadcrumb.service';
+import { baseBreadcrumb } from 'src/app/common/models/base.breadcrumb';
+import { baseArtistBreadcrumb } from '../base-artist.breadcrumb';
+import { artistEditBreadcrumb } from './artist-edit.breadcrumb';
 
 @Component({
   selector: 'artist-edit',
@@ -26,10 +30,12 @@ export class ArtistEditComponent implements OnInit, OnDestroy {
     private artistFormService: ArtistFormService,
     private sms: SnackbarMessagingService,
     private router: Router,
-    private artistService: ArtistService
+    private artistService: ArtistService,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumbs([baseBreadcrumb, baseArtistBreadcrumb, artistEditBreadcrumb]);
     this.route.params.pipe(takeUntil(this.destroyed)).subscribe(params => {
       this.getArtist(params.id);
     });

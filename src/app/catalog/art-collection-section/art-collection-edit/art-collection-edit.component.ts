@@ -9,6 +9,10 @@ import { ArtCollectionFormService } from '../art-collection-form.service';
 
 import { ArtCollection } from '../art-collection.model';
 import { ArtCollectionService } from '../art-collection.service';
+import { BreadcrumbService } from 'src/app/common/services/breadcrumb.service';
+import { artCollectionEditBreadcrumb } from './art-collection-edit.breadcrumb';
+import { baseArtCollectionBreadcrumb } from '../base-art-collection.breadcrumb';
+import { baseBreadcrumb } from 'src/app/common/models/base.breadcrumb';
 
 @Component({
   selector: 'art-collection-edit',
@@ -27,10 +31,12 @@ export class ArtCollectionEditComponent implements OnInit, OnDestroy {
     private artCollectionFormService: ArtCollectionFormService,
     private artCollectionService: ArtCollectionService,
     private sms: SnackbarMessagingService,
-    private router: Router
+    private router: Router,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumbs([baseBreadcrumb, baseArtCollectionBreadcrumb, artCollectionEditBreadcrumb]);
     this.route.params.pipe(takeUntil(this.destroyed)).subscribe(params => {
       this.getArtCollection(params.id);
     });

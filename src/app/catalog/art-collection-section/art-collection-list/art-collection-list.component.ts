@@ -8,6 +8,9 @@ import { ArtCollectionService } from '../art-collection.service';
 import { CatalartConfirmationDialogComponent } from 'src/app/common/components/catalart-confirmation-dialog/catalart-confirmation-dialog.component';
 import { takeUntil, finalize } from 'rxjs/operators';
 import { Query } from 'src/app/common/models/query.model';
+import { BreadcrumbService } from 'src/app/common/services/breadcrumb.service';
+import { baseBreadcrumb } from 'src/app/common/models/base.breadcrumb';
+import { baseArtCollectionBreadcrumb } from '../base-art-collection.breadcrumb';
 
 @Component({
   selector: 'art-collection-list',
@@ -27,10 +30,12 @@ export class ArtCollectionListComponent implements OnInit, OnDestroy {
     private router: Router,
     private artCollectionService: ArtCollectionService,
     private sms: SnackbarMessagingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumbs([baseBreadcrumb, baseArtCollectionBreadcrumb]);
     this.setQueryOptions();
     this.getAllArtCollections();
   }

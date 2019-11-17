@@ -9,6 +9,10 @@ import { SnackbarMessagingService } from 'src/app/common/services/snackbar-messa
 
 import { Artwork } from '../artwork.model';
 import { ArtworkService } from '../artwork.service';
+import { BreadcrumbService } from 'src/app/common/services/breadcrumb.service';
+import { baseBreadcrumb } from 'src/app/common/models/base.breadcrumb';
+import { baseArtworkBreadcrumb } from '../base-artwork.breadcrumb';
+import { artworkEditBreadcrumb } from './artwork-edit.breadcrumb';
 
 @Component({
   selector: 'artwork-edit',
@@ -27,10 +31,12 @@ export class ArtworkEditComponent implements OnInit, OnDestroy {
     private artworkFormService: ArtworkFormService,
     private sms: SnackbarMessagingService,
     private router: Router,
-    private artworkService: ArtworkService
+    private artworkService: ArtworkService,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumbs([baseBreadcrumb, baseArtworkBreadcrumb, artworkEditBreadcrumb]);
     this.route.params.pipe(takeUntil(this.destroyed)).subscribe(params => {
       this.getArtwork(params.id);
     });

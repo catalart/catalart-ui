@@ -10,6 +10,9 @@ import { CatalartConfirmationDialogComponent } from 'src/app/common/components/c
 
 import { ArtistPreview } from './artist-preview-card/artist-preview.model';
 import { Query } from 'src/app/common/models/query.model';
+import { baseBreadcrumb } from 'src/app/common/models/base.breadcrumb';
+import { baseArtistBreadcrumb } from '../base-artist.breadcrumb';
+import { BreadcrumbService } from 'src/app/common/services/breadcrumb.service';
 
 @Component({
   selector: 'artist-list',
@@ -29,10 +32,12 @@ export class ArtistListComponent implements OnInit, OnDestroy {
     private router: Router,
     private artistService: ArtistService,
     private sms: SnackbarMessagingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setBreadcrumbs([baseBreadcrumb, baseArtistBreadcrumb]);
     this.setQueryOptions();
     this.getAllArtists();
   }
