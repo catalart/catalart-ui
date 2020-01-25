@@ -19,8 +19,8 @@ export class ArtworkService {
 
   getAllArtworkAsOptions(): Observable<Option[]> {
     return this.http
-      .get<ArtworkPreview[]>(`${environment.API_URL}/artwork`)
-      .pipe(map(result => result.map(r => new Option(r.id, r.title))));
+      .get<ListResponse<ArtworkPreview>>(`${environment.API_URL}/artwork`)
+      .pipe(map(result => result.results.map(r => new Option(r.id, r.title))));
   }
 
   getArtworkById(id: number): Observable<Artwork> {
