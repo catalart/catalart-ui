@@ -45,15 +45,15 @@ export class GenreListComponent implements OnInit, OnDestroy {
     this.destroyed.complete();
   }
 
-  onEditClicked(genre: Genre) {
-    this.router.navigateByUrl(`reference/genres/edit/${genre.id}`);
+  onEditClicked(genreId: number) {
+    this.router.navigateByUrl(`reference/genres/edit/${genreId}`);
   }
 
   addClicked() {
     this.router.navigateByUrl('reference/genres/add');
   }
 
-  onDeleteClicked(genre: Genre) {
+  onDeleteClicked(genreId: number) {
     this.dialog
       .open(CatalartConfirmationDialogComponent, {
         width: '300px'
@@ -62,26 +62,15 @@ export class GenreListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed))
       .subscribe(wasConfirmed => {
         if (wasConfirmed) {
-          this.deleteGenre(genre.id);
+          this.deleteGenre(genreId);
         }
       });
-  }
-
-  filter(filter: string) {
-    this.query.filter = filter;
-    this.query.offset = 0;
-    this.getAllGenres();
-  }
-
-  updatePaginationOptions(pageEvent: PageEvent) {
-    this.query.updateGivenPageEvent(pageEvent);
-    this.getAllGenres();
   }
 
   private getAllGenres() {
     this.loading = true;
     this.genreService
-      .getAllGenres(this.query)
+      .getAllGenres()
       .pipe(
         takeUntil(this.destroyed),
         finalize(() => (this.loading = false))

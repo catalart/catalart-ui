@@ -17,7 +17,7 @@ export class GenreFormService implements IFormService<Genre> {
     return this.fb.group({
       name: [genre.name, Validators.required],
       label: [genre.label, Validators.required],
-      description: genre.description
+      description: [genre.description, Validators.maxLength(1000)]
     });
   }
 

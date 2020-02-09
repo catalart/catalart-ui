@@ -16,7 +16,7 @@ export class GenreSectionsComponent {
   constructor(private router: Router) {}
 
   cancelClicked() {
-    this.router.navigateByUrl('genres/list');
+    this.router.navigateByUrl('reference/genres/list');
   }
 
   saveClicked() {

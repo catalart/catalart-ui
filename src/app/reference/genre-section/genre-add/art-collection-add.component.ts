@@ -52,7 +52,7 @@ export class GenreAddComponent implements OnInit {
         .subscribe(
           () => {
             this.sms.displaySuccess('Genre created.');
-            this.router.navigateByUrl('genres/list');
+            this.router.navigateByUrl('reference/genres/list');
           },
           error => this.sms.displayError(error)
         );
