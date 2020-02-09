@@ -11,6 +11,6 @@ export class ArtworkGenreReferenceService {
   constructor(private http: HttpClient) {}
 
   getAllGenres(): Observable<Option[]> {
-    return this.http.get<Option[]>(`${environment.API_URL}/reference/artworkGenres`);
+    return this.http.get<Option[]>(`${environment.API_URL}/reference/genres/options`);
   }
 }

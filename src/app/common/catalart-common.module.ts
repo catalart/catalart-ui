@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../material.module';
+import { RoutingModule } from '../routing.module';
 
 import { CatalartSectionComponent } from './components/catalart-section/catalart-section.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CatalartDropdownComponent } from './components/catalart-dropdown/catalart-dropdown.component';
 import { CatalartTagsComponent } from './components/catalart-tags/catalart-tags.component';
 import { CatalartSectionContainerComponent } from './components/catalart-section-container/catalart-section-container.component';
@@ -18,8 +19,8 @@ import { CatalartSearchBarComponent } from './components/catalart-search-bar/cat
 import { CatalartPreviewSectionComponent } from './components/catalart-preview-section/catalart-preview-section.component';
 import { CatalartDateAndPlaceSectionComponent } from './components/catalart-date-and-place-section/catalart-date-and-place-section.component';
 import { CatalartBreadcrumbsComponent } from './components/catalart-breadcrumbs/catalart-breadcrumbs.component';
-import { RoutingModule } from '../routing.module';
 import { CatalartContainerComponent } from './components/catalart-container/catalart-container.component';
+import { CatalartReferenceTableComponent } from './components/catalart-reference-table/catalart-reference-table.component';
 
 @NgModule({
   imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule, RoutingModule],
@@ -39,7 +40,8 @@ import { CatalartContainerComponent } from './components/catalart-container/cata
     CatalartPreviewSectionComponent,
     CatalartDateAndPlaceSectionComponent,
     CatalartBreadcrumbsComponent,
-    CatalartContainerComponent
+    CatalartContainerComponent,
+    CatalartReferenceTableComponent
   ],
   exports: [
     CatalartSectionComponent,
@@ -56,7 +58,8 @@ import { CatalartContainerComponent } from './components/catalart-container/cata
     CatalartPreviewSectionComponent,
     CatalartDateAndPlaceSectionComponent,
     CatalartBreadcrumbsComponent,
-    CatalartContainerComponent
+    CatalartContainerComponent,
+    CatalartReferenceTableComponent
   ]
 })
 export class CatalartCommonModule {}

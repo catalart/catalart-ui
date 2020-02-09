@@ -1,0 +1,8 @@
+<catalart-search-bar (onSearch)="filter($event)"
+                     (onAdd)="addClicked()"
+                     ariaLabel="Add new genre">
+</catalart-search-bar>
+<catalart-section-container>
+  <catalart-reference-table [referenceItems]="genres">
+  </catalart-reference-table>
+</catalart-section-container>
