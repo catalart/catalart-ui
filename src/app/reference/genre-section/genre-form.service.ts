@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IFormService } from 'src/app/common/models/form-service.interface';
 import { Genre } from './genre.model';
 
@@ -15,8 +15,8 @@ export class GenreFormService implements IFormService<Genre> {
 
   private buildBaseSection(genre: Genre) {
     return this.fb.group({
-      name: genre.name,
-      label: genre.label,
+      name: [genre.name, Validators.required],
+      label: [genre.label, Validators.required],
       description: genre.description
     });
   }

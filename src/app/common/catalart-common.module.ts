@@ -24,7 +24,6 @@ import { CatalartReferenceTableComponent } from './components/catalart-reference
 
 @NgModule({
   imports: [MaterialModule, ReactiveFormsModule, BrowserAnimationsModule, RoutingModule],
-  entryComponents: [CatalartConfirmationDialogComponent],
   declarations: [
     CatalartSectionComponent,
     CatalartDropdownComponent,

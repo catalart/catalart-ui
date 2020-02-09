@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/catalart-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -53,6 +54,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -118,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "catalart-ui"
+    }
+  },
+  "defaultProject": "catalart-ui",
+  "cli": {
+    "analytics": "25711f51-2bcc-4044-9780-ab9fec7619da"
+  }
 }

@@ -77,7 +77,7 @@ export class GenreEditComponent implements OnInit, OnDestroy {
         .subscribe(
           () => {
             this.sms.displaySuccess('Genre saved.');
-            this.router.navigateByUrl('genres/list');
+            this.router.navigateByUrl('reference/genres/list');
           },
           error => this.sms.displayError(error)
         );

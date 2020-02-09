@@ -45,16 +45,12 @@ export class GenreListComponent implements OnInit, OnDestroy {
     this.destroyed.complete();
   }
 
-  onViewClicked(genre: Genre) {
-    this.router.navigateByUrl(`genres/view/${genre.id}`);
-  }
-
   onEditClicked(genre: Genre) {
-    this.router.navigateByUrl(`genres/edit/${genre.id}`);
+    this.router.navigateByUrl(`reference/genres/edit/${genre.id}`);
   }
 
   addClicked() {
-    this.router.navigateByUrl('genres/add');
+    this.router.navigateByUrl('reference/genres/add');
   }
 
   onDeleteClicked(genre: Genre) {
