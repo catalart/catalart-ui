@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       if (errorMessage.error) {
         errorMessage = errorMessage.error;
       }
-      errorMessage = `${error.status} - ${error.statusText || ''}: ${errorMessage}`;
+      errorMessage = errorMessage;
     } else {
       errorMessage = error.message ? error.message : error.toString();
     }

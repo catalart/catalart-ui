@@ -1,0 +1,25 @@
+<ng-container [formGroup]="baseForm">
+  <catalart-section [title]="'Genre'"
+                    [description]="'Depicted themes and objects in artwork'"
+                    [invalid]="baseForm.invalid"
+                    [icon]="'layers'">
+    <mat-form-field>
+      <input matInput
+             placeholder="Name"
+             formControlName="name"
+             required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+             placeholder="Label"
+             formControlName="label"
+             required>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput
+                placeholder="Description"
+                formControlName="description"
+                rows="5"></textarea>
+    </mat-form-field>
+  </catalart-section>
+</ng-container>

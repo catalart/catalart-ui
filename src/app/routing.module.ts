@@ -15,6 +15,11 @@ import { ArtistListComponent } from './catalog/artist-sections/artist-list/artis
 import { ArtistSectionComponent } from './catalog/artist-sections/artist-section.component';
 import { ArtistEditComponent } from './catalog/artist-sections/artist-edit/artist-edit.component';
 import { ArtistAddComponent } from './catalog/artist-sections/artist-add/artist-add.component';
+import { ReferenceComponent } from './reference/reference.component';
+import { GenreSectionComponent } from './reference/genre-section/genre-section.component';
+import { GenreListComponent } from './reference/genre-section/genre-list/genre-list.component';
+import { GenreEditComponent } from './reference/genre-section/genre-edit/genre-edit.component';
+import { GenreAddComponent } from './reference/genre-section/genre-add/art-collection-add.component';
 
 const routes: Routes = [
   {
@@ -24,6 +29,35 @@ const routes: Routes = [
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent
+  },
+  {
+    path: 'reference',
+    component: ReferenceComponent,
+    children: [
+      {
+        path: 'genres',
+        component: GenreSectionComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'list'
+          },
+          {
+            path: 'list',
+            component: GenreListComponent
+          },
+          {
+            path: 'edit/:id',
+            component: GenreEditComponent
+          },
+          {
+            path: 'add',
+            component: GenreAddComponent
+          }
+        ]
+      }
+    ]
   },
   {
     path: 'art-collections',

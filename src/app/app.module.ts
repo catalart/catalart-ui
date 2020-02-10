@@ -9,6 +9,7 @@ import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import { CatalogModule } from './catalog/catalog.module';
 import { CatalartCommonModule } from './common/catalart-common.module';
 import { ComplexSearchModule } from './complex-search/complex-search.module';
+import { ReferenceModule } from './reference/reference.module';
 
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 
@@ -25,7 +26,8 @@ import { ResponseInterceptor } from './interceptors/response.interceptor';
     AdminDashboardModule,
     CatalogModule,
     CatalartCommonModule,
-    ComplexSearchModule
+    ComplexSearchModule,
+    ReferenceModule
   ],
   providers: [
     {

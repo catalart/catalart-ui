@@ -1,0 +1,20 @@
+<ng-container *ngIf="!loading else loadingMask">
+  <span class="genre-sections" [formGroup]="genreForm">
+    <span class="button-group">
+      <button mat-button (click)="cancelClicked()">Cancel <mat-icon class="button-icon">cancel</mat-icon></button>
+      <catalart-button (onClick)="saveClicked()"
+                       [loading]="saving"
+                       [disabled]="disabled"
+                       [title]="'Save'"
+                       [positive]="true">
+        <mat-icon class="button-icon">save</mat-icon>
+      </catalart-button>
+    </span>
+    <catalart-section-container>
+      <genre-base-section [baseForm]="baseForm"></genre-base-section>
+    </catalart-section-container>
+  </span>
+</ng-container>
+<ng-template #loadingMask>
+  <loading-mask></loading-mask>
+</ng-template>

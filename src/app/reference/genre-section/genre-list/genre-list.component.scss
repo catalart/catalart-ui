@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  catalart-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
