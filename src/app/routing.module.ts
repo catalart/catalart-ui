@@ -19,7 +19,11 @@ import { ReferenceComponent } from './reference/reference.component';
 import { GenreSectionComponent } from './reference/genre-section/genre-section.component';
 import { GenreListComponent } from './reference/genre-section/genre-list/genre-list.component';
 import { GenreEditComponent } from './reference/genre-section/genre-edit/genre-edit.component';
-import { GenreAddComponent } from './reference/genre-section/genre-add/art-collection-add.component';
+import { GenreAddComponent } from './reference/genre-section/genre-add/genre-add.component';
+import { StyleAddComponent } from './reference/style-section/style-add/style-add.component';
+import { StyleEditComponent } from './reference/style-section/style-edit/style-edit.component';
+import { StyleListComponent } from './reference/style-section/style-list/style-list.component';
+import { StyleSectionComponent } from './reference/style-section/style-section.component';
 
 const routes: Routes = [
   {
@@ -54,6 +58,29 @@ const routes: Routes = [
           {
             path: 'add',
             component: GenreAddComponent
+          }
+        ]
+      },
+      {
+        path: 'styles',
+        component: StyleSectionComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'list'
+          },
+          {
+            path: 'list',
+            component: StyleListComponent
+          },
+          {
+            path: 'edit/:id',
+            component: StyleEditComponent
+          },
+          {
+            path: 'add',
+            component: StyleAddComponent
           }
         ]
       }
