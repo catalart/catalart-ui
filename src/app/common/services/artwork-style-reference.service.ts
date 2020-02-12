@@ -11,6 +11,6 @@ export class ArtworkStyleReferenceService {
   constructor(private http: HttpClient) {}
 
   getAllStyles(): Observable<Option[]> {
-    return this.http.get<Option[]>(`${environment.API_URL}/reference/artworkStyles`);
+    return this.http.get<Option[]>(`${environment.API_URL}/reference/styles/options`);
   }
 }

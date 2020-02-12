@@ -11,12 +11,12 @@ import { GenreService } from '../genre.service';
 import { Genre } from '../genre.model';
 import { baseGenreBreadcrumb } from '../base-genre.breadcrumb';
 import { baseBreadcrumb } from 'src/app/common/models/base.breadcrumb';
-import { genreAddBreadcrumb } from './art-collection-add.breadcrumb';
+import { genreAddBreadcrumb } from './genre-add.breadcrumb';
 import { BreadcrumbService } from 'src/app/common/services/breadcrumb.service';
 
 @Component({
-  selector: 'art-collection-add',
-  templateUrl: './art-collection-add.component.html'
+  selector: 'genre-add',
+  templateUrl: './genre-add.component.html'
 })
 export class GenreAddComponent implements OnInit {
   genre: Genre;

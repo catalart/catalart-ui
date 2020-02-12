@@ -10,7 +10,7 @@ import { GenreSectionsModule } from './genre-sections/genre-sections.module';
 
 import { GenreSectionComponent } from './genre-section.component';
 import { GenreEditComponent } from './genre-edit/genre-edit.component';
-import { GenreAddComponent } from './genre-add/art-collection-add.component';
+import { GenreAddComponent } from './genre-add/genre-add.component';
 
 import { GenreFormService } from './genre-form.service';
 import { GenreService } from './genre.service';
